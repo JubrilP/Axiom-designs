@@ -116,8 +116,8 @@ body{background:var(--void);color:var(--cream);font-family:'Jost',sans-serif;fon
 /* Master — luxury private bedroom (NOT hotel) */
 #r-master .rp{background-image:url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=2200&q=92')}
 #r-master .rp::after{content:'';position:absolute;inset:0;background:linear-gradient(255deg,rgba(10,9,14,.97) 40%,rgba(10,9,14,.28) 65%,rgba(10,9,14,.04) 100%)}
-/* Pool — private villa infinity pool with view */
-#r-pool .rp{background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=2400&q=95')}
+/* Pool — private infinity pool with panoramic mountain/valley view */
+#r-pool .rp{background-image:url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=2400&q=95')}
 #r-pool .rp::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,13,.95) 0%,rgba(6,5,13,.35) 35%,rgba(6,5,13,.08) 60%,rgba(6,5,13,.2) 100%)}
 
 /* ── ROOM INNER LAYOUT ── */
@@ -252,6 +252,157 @@ body{background:var(--void);color:var(--cream);font-family:'Jost',sans-serif;fon
   .wc-b{display:none}
   #room-dots{display:none}
 }
+
+/* ══════════════════════════════════════════
+   SECTION: THE PROCESS
+══════════════════════════════════════════ */
+#r-process{
+  background:var(--void);
+  position:relative;overflow:hidden;
+}
+#r-process::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(201,165,90,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,165,90,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.process-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+  padding:7rem 5rem;width:100%;
+}
+.process-left{}
+.process-eyebrow{font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.6rem;opacity:0;transform:translateX(-20px)}
+.process-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+.process-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,4.5vw,5.2rem);font-weight:300;line-height:.92;letter-spacing:-.01em;color:var(--cream)}
+.process-heading em{color:var(--gold);font-style:italic}
+.process-sub{font-size:.86rem;line-height:2.05;color:var(--cream-dim);font-weight:200;max-width:380px;margin-top:1.6rem;opacity:0;transform:translateY(14px)}
+.process-stats{display:flex;gap:3rem;margin-top:2.5rem}
+.pstat{}
+.pstat-n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1;opacity:0;transform:translateY(14px)}
+.pstat-l{font-size:.54rem;font-weight:200;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-dim);margin-top:.2rem;opacity:0;transform:translateY(8px)}
+
+/* Step timeline */
+.steps-list{display:flex;flex-direction:column;gap:0;position:relative}
+.steps-list::before{
+  content:'';position:absolute;left:1.1rem;top:.5rem;bottom:.5rem;
+  width:1px;background:linear-gradient(to bottom,var(--gold),rgba(201,165,90,.1));
+}
+.step-item{
+  display:flex;gap:1.8rem;padding:1.4rem 0;
+  position:relative;cursor:none;
+  opacity:0;transform:translateX(28px);
+}
+.step-item:hover .step-num{background:var(--gold);color:var(--void)}
+.step-num{
+  width:22px;height:22px;border-radius:50%;
+  border:1px solid var(--gold);background:var(--void);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syncopate',sans-serif;font-size:.45rem;font-weight:700;
+  color:var(--gold);flex-shrink:0;margin-top:.15rem;
+  transition:background .25s,color .25s;position:relative;z-index:1;
+}
+.step-body{}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:400;color:var(--cream);margin-bottom:.3rem}
+.step-desc{font-size:.72rem;font-weight:200;color:var(--cream-dim);line-height:1.78}
+
+/* ══════════════════════════════════════════
+   SECTION: CLIENT STORIES
+══════════════════════════════════════════ */
+#r-stories{
+  background:#f0ece3;
+  position:relative;overflow:hidden;
+}
+#r-stories::before{
+  content:'';position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(201,165,90,0.04) 60px,rgba(201,165,90,0.04) 61px),
+    repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(201,165,90,0.04) 60px,rgba(201,165,90,0.04) 61px);
+  pointer-events:none;
+}
+.stories-inner{
+  position:relative;z-index:2;
+  padding:7rem 5rem;width:100%;
+}
+.stories-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
+.stories-heading-wrap{}
+.stories-eyebrow{font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;opacity:0;transform:translateY(-10px)}
+.stories-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+.stories-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,4rem);font-weight:300;line-height:.95;color:var(--coal);opacity:0;transform:translateY(-10px)}
+.stories-heading em{color:var(--gold);font-style:italic}
+.stories-tagline{font-size:.8rem;font-weight:200;color:var(--coal-dim);max-width:320px;line-height:1.8;opacity:0;transform:translateY(-10px)}
+
+.stories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.story-card{
+  background:#fff;border:1px solid rgba(201,165,90,.14);
+  padding:2.2rem;position:relative;overflow:hidden;
+  cursor:none;transition:border-color .3s,box-shadow .3s,transform .3s;
+  opacity:0;transform:translateY(28px);
+}
+.story-card:hover{border-color:rgba(201,165,90,.4);box-shadow:0 12px 48px rgba(26,24,20,.08);transform:translateY(-4px)}
+.story-card::before{
+  content:'\201C';
+  position:absolute;top:1.2rem;left:1.8rem;
+  font-family:'Cormorant Garamond',serif;font-size:4.5rem;
+  color:var(--gold);opacity:.22;line-height:1;
+}
+.story-tag{
+  font-family:'Syncopate',sans-serif;font-size:.42rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:.6rem;margin-bottom:1.5rem;
+}
+.story-tag::after{content:'';flex:1;height:1px;background:rgba(201,165,90,.2)}
+.story-quote{font-family:'Cormorant Garamond',serif;font-size:1.04rem;font-weight:300;font-style:italic;color:var(--coal);line-height:1.7;margin-bottom:1.8rem}
+.story-meta{border-top:1px solid rgba(201,165,90,.1);padding-top:1.2rem}
+.story-client{font-family:'Jost',sans-serif;font-size:.75rem;font-weight:400;color:var(--coal);margin-bottom:.2rem}
+.story-location{font-size:.6rem;font-weight:200;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,24,20,.45)}
+.story-value{font-family:'Cormorant Garamond',serif;font-size:.9rem;font-weight:300;color:var(--gold);margin-top:.5rem}
+
+/* ══════════════════════════════════════════
+   SECTION: FULL SERVICES
+══════════════════════════════════════════ */
+#r-services{
+  background:var(--void);
+  position:relative;overflow:hidden;
+}
+.services-inner{
+  position:relative;z-index:2;
+  padding:7rem 5rem;width:100%;
+}
+.services-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
+.services-heading-wrap{}
+.services-eyebrow{font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;opacity:0;transform:translateY(-10px)}
+.services-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+.services-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,4rem);font-weight:300;line-height:.95;color:var(--cream);opacity:0;transform:translateY(-10px)}
+.services-heading em{color:var(--gold);font-style:italic}
+.services-note{font-size:.8rem;font-weight:200;color:var(--cream-dim);max-width:300px;line-height:1.8;opacity:0;transform:translateY(-10px)}
+
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,165,90,.08)}
+.service-cat{
+  background:var(--void);padding:2.2rem 2rem;
+  transition:background .3s;cursor:none;
+  opacity:0;transform:translateY(24px);
+}
+.service-cat:hover{background:rgba(201,165,90,.04)}
+.cat-icon{font-size:1.4rem;color:var(--gold);margin-bottom:1.2rem;opacity:.7}
+.cat-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--cream);margin-bottom:.4rem}
+.cat-sub{font-size:.54rem;font-weight:200;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,165,90,.1)}
+.cat-list{display:flex;flex-direction:column;gap:.55rem}
+.cat-item{font-size:.73rem;font-weight:200;color:var(--cream-dim);line-height:1.6;display:flex;gap:.7rem;align-items:flex-start;transition:color .2s}
+.cat-item::before{content:'—';color:rgba(201,165,90,.5);flex-shrink:0;font-size:.6rem;margin-top:.15rem}
+.cat-item:hover{color:var(--cream)}
+
+/* Scoped mobile overrides for new sections */
+@media(max-width:768px){
+  .process-inner,.stories-inner,.services-inner{padding:7rem 1.5rem 3rem}
+  .process-inner{grid-template-columns:1fr;gap:3rem}
+  .stories-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .stories-header,.services-top{flex-direction:column;gap:1.5rem;align-items:flex-start}
+}
 </style>
 </head>
 <body>
@@ -319,6 +470,9 @@ body{background:var(--void);color:var(--cream);font-family:'Jost',sans-serif;fon
     <li><a href="#" onclick="goToRoom(2);return false">Living</a></li>
     <li><a href="#" onclick="goToRoom(3);return false">Master</a></li>
     <li><a href="#" onclick="goToRoom(4);return false">Pool</a></li>
+    <li><a href="#" onclick="goToRoom(5);return false">Process</a></li>
+    <li><a href="#" onclick="goToRoom(6);return false">Stories</a></li>
+    <li><a href="#" onclick="goToRoom(7);return false">Services</a></li>
   </ul>
   <button class="hbtn" onclick="openBiz()">Commission a Project</button>
 </nav>
@@ -330,6 +484,9 @@ body{background:var(--void);color:var(--cream);font-family:'Jost',sans-serif;fon
   <div class="rdot" onclick="goToRoom(2)"></div>
   <div class="rdot" onclick="goToRoom(3)"></div>
   <div class="rdot" onclick="goToRoom(4)"></div>
+  <div class="rdot" onclick="goToRoom(5)"></div>
+  <div class="rdot" onclick="goToRoom(6)"></div>
+  <div class="rdot" onclick="goToRoom(7)"></div>
 </div>
 
 <!-- INTRO -->
@@ -481,6 +638,186 @@ body{background:var(--void);color:var(--cream);font-family:'Jost',sans-serif;fon
     </div>
   </section>
 
+  <!-- ══════════ SECTION 6: THE PROCESS ══════════ -->
+  <section class="room" id="r-process">
+    <div class="process-inner">
+      <div class="process-left">
+        <div class="process-eyebrow" id="pr-ey">How We Build</div>
+        <h2 class="process-heading" id="pr-h">
+          <span class="tln"><span class="tin">Five steps.</span></span>
+          <span class="tln"><span class="tin">Zero</span></span>
+          <span class="tln"><span class="tin"><em>surprises.</em></span></span>
+        </h2>
+        <p class="process-sub" id="pr-sub">Every Axiom project follows the same meticulous process — from the first conversation to the moment we hand you the keys. You always know exactly where we are and what comes next.</p>
+        <div class="process-stats" id="pr-stats">
+          <div><div class="pstat-n" id="pst-1">340+</div><div class="pstat-l" id="psl-1">Projects Delivered</div></div>
+          <div><div class="pstat-n" id="pst-2">98%</div><div class="pstat-l" id="psl-2">On-Time Completion</div></div>
+          <div><div class="pstat-n" id="pst-3">10yr</div><div class="pstat-l" id="psl-3">Craft Warranty</div></div>
+        </div>
+      </div>
+      <div class="steps-list" id="pr-steps">
+        <div class="step-item" id="st-1">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <div class="step-title">Discovery & Vision</div>
+            <div class="step-desc">We visit your home, walk every space, and listen to how you live. No measurements yet — just conversation. We learn what you want to feel, not just what you want to build.</div>
+          </div>
+        </div>
+        <div class="step-item" id="st-2">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <div class="step-title">Design Concept</div>
+            <div class="step-desc">Our design team develops a full concept — floor plans, material mood boards, renderings, and a detailed scope of work. You see everything before a single wall moves.</div>
+          </div>
+        </div>
+        <div class="step-item" id="st-3">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <div class="step-title">Material Curation</div>
+            <div class="step-desc">We source globally. Stone from Italy, oak from the Pacific Northwest, brass from Belgium. Every material is presented in person so you feel it before you commit to it.</div>
+          </div>
+        </div>
+        <div class="step-item" id="st-4">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <div class="step-title">The Build</div>
+            <div class="step-desc">Our crew arrives on day one and doesn't leave until the work is done. Weekly updates, a dedicated project manager, and a job site that stays clean. No subcontractor chaos.</div>
+          </div>
+        </div>
+        <div class="step-item" id="st-5">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <div class="step-title">The Reveal</div>
+            <div class="step-desc">The moment we build every project toward. We walk the completed home with you, room by room. Nothing is signed off until you are completely satisfied with every detail.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 7: CLIENT STORIES ══════════ -->
+  <section class="room" id="r-stories">
+    <div class="stories-inner">
+      <div class="stories-header">
+        <div class="stories-heading-wrap">
+          <div class="stories-eyebrow" id="st-ey">Client Stories</div>
+          <h2 class="stories-heading" id="st-h">
+            <span class="tln"><span class="tin">Told in their</span></span>
+            <span class="tln"><span class="tin"><em>own words.</em></span></span>
+          </h2>
+        </div>
+        <p class="stories-tagline" id="st-tg">Every home we build becomes a relationship that outlasts the project. These are the people who trusted us with the most personal spaces in their lives.</p>
+      </div>
+      <div class="stories-grid">
+        <div class="story-card" id="sc-1">
+          <div class="story-tag">Kitchen · Raleigh, NC</div>
+          <div class="story-quote">"From the first meeting we knew Axiom was different. They asked how we wanted to feel in the kitchen at 7am, not just what cabinets we wanted. The result is something we could not have imagined ourselves — and we use it every single day."</div>
+          <div class="story-meta">
+            <div class="story-client">Elaine & Robert Marsh</div>
+            <div class="story-location">Raleigh · North Carolina</div>
+            <div class="story-value">Full Kitchen Renovation · $240,000 investment</div>
+          </div>
+        </div>
+        <div class="story-card" id="sc-2">
+          <div class="story-tag">Full Home · Chapel Hill, NC</div>
+          <div class="story-quote">"We interviewed six firms before Axiom. The others showed us their past work. Axiom showed us our future home — rendered in detail, every material chosen, every room considered. It wasn't even a difficult decision."</div>
+          <div class="story-meta">
+            <div class="story-client">Sandra & James Keller</div>
+            <div class="story-location">Chapel Hill · North Carolina</div>
+            <div class="story-value">Complete Home Transformation · $1.8M investment</div>
+          </div>
+        </div>
+        <div class="story-card" id="sc-3">
+          <div class="story-tag">Outdoor Living · Durham, NC</div>
+          <div class="story-quote">"The infinity pool and terrace they designed have become the most-used space in our entire home. Our backyard now gets more time than our living room. The boundary between inside and outside simply ceased to exist."</div>
+          <div class="story-meta">
+            <div class="story-client">Marcus & Diana Thornton</div>
+            <div class="story-location">Durham · North Carolina</div>
+            <div class="story-value">Outdoor Sanctuary · $480,000 investment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 8: FULL SERVICES ══════════ -->
+  <section class="room" id="r-services">
+    <div class="services-inner">
+      <div class="services-top">
+        <div class="services-heading-wrap">
+          <div class="services-eyebrow" id="sv-ey">Full Scope of Work</div>
+          <h2 class="services-heading" id="sv-h">
+            <span class="tln"><span class="tin">Everything we</span></span>
+            <span class="tln"><span class="tin"><em>can do for you.</em></span></span>
+          </h2>
+        </div>
+        <p class="services-note" id="sv-note">Every discipline handled in-house. One team, one vision, no handoffs. We are not a general contractor who hires other contractors — we are architects, designers, and builders under one roof.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-cat" id="sv-1">
+          <div class="cat-icon">⬡</div>
+          <div class="cat-title">Interior Architecture</div>
+          <div class="cat-sub">The spaces you live in</div>
+          <div class="cat-list">
+            <div class="cat-item">Full kitchen redesign & renovation</div>
+            <div class="cat-item">Bathroom & spa design</div>
+            <div class="cat-item">Living & dining space transformation</div>
+            <div class="cat-item">Master suite & dressing room</div>
+            <div class="cat-item">Home office & library design</div>
+            <div class="cat-item">Custom built-ins & cabinetry</div>
+            <div class="cat-item">Ceiling & wall architecture</div>
+            <div class="cat-item">Lighting design & integration</div>
+          </div>
+        </div>
+        <div class="service-cat" id="sv-2">
+          <div class="cat-icon">◎</div>
+          <div class="cat-title">Exterior & Outdoor</div>
+          <div class="cat-sub">Beyond the walls</div>
+          <div class="cat-list">
+            <div class="cat-item">Infinity & vanishing-edge pools</div>
+            <div class="cat-item">Covered terrace & outdoor living</div>
+            <div class="cat-item">Outdoor kitchen & bar design</div>
+            <div class="cat-item">Landscape architecture</div>
+            <div class="cat-item">Driveway & motor court design</div>
+            <div class="cat-item">Exterior facade & cladding</div>
+            <div class="cat-item">Architectural lighting systems</div>
+            <div class="cat-item">Pergola & shade structure</div>
+          </div>
+        </div>
+        <div class="service-cat" id="sv-3">
+          <div class="cat-icon">◈</div>
+          <div class="cat-title">Surfaces & Materials</div>
+          <div class="cat-sub">What you touch every day</div>
+          <div class="cat-list">
+            <div class="cat-item">Natural stone selection & installation</div>
+            <div class="cat-item">Hardwood & engineered flooring</div>
+            <div class="cat-item">Tile, zellige & mosaic work</div>
+            <div class="cat-item">Polished & honed concrete</div>
+            <div class="cat-item">Custom millwork & trim</div>
+            <div class="cat-item">Plaster & specialty wall finishes</div>
+            <div class="cat-item">Metal & glass fabrication</div>
+            <div class="cat-item">Upholstery & soft goods</div>
+          </div>
+        </div>
+        <div class="service-cat" id="sv-4">
+          <div class="cat-icon">◫</div>
+          <div class="cat-title">Technology & Systems</div>
+          <div class="cat-sub">The intelligence behind it all</div>
+          <div class="cat-list">
+            <div class="cat-item">Whole-home automation (Lutron, Crestron)</div>
+            <div class="cat-item">Integrated AV & home theater</div>
+            <div class="cat-item">Circadian & architectural lighting control</div>
+            <div class="cat-item">Radiant floor heating systems</div>
+            <div class="cat-item">Concealed HVAC design</div>
+            <div class="cat-item">Security & access control</div>
+            <div class="cat-item">Pool automation & climate systems</div>
+            <div class="cat-item">EV charging & energy infrastructure</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div><!-- /site -->
 
 <script>
@@ -526,7 +863,7 @@ async function subBiz(e){
 
 // ROOM NAVIGATION — pure CSS snap handles scrolling
 // JS only tracks which room is visible for dots + animations
-const rooms=['r-entry','r-kitchen','r-living','r-master','r-pool'];
+const rooms=['r-entry','r-kitchen','r-living','r-master','r-pool','r-process','r-stories','r-services'];
 let currentRoom=0;
 const site=document.getElementById('site');
 const dots=document.querySelectorAll('.rdot');
@@ -613,6 +950,22 @@ function playRoom(idx){
       .to(`#${id} .rbodyl`,{opacity:1,y:0,duration:.45},'-=.3')
       .to(`#${id} .psn`,{opacity:1,y:0,stagger:.1,duration:.45},'-=.2')
       .to(`#${id} .pfi`,{opacity:1,x:0,stagger:.1,duration:.42},'-=.2');
+  }else if(id==='r-process'){
+    tl.to('#pr-ey',{opacity:1,x:0,duration:.45})
+      .to('#r-process .tin',{y:0,stagger:.1,duration:.6},'-=.2')
+      .to('#pr-sub',{opacity:1,y:0,duration:.45},'-=.3')
+      .to(['#pst-1','#psl-1','#pst-2','#psl-2','#pst-3','#psl-3'],{opacity:1,y:0,stagger:.07,duration:.4},'-=.2')
+      .to(['#st-1','#st-2','#st-3','#st-4','#st-5'],{opacity:1,x:0,stagger:.12,duration:.5},'-=.4');
+  }else if(id==='r-stories'){
+    tl.to('#st-ey',{opacity:1,y:0,duration:.45})
+      .to('#st-h .tin',{y:0,stagger:.12,duration:.6},'-=.2')
+      .to('#st-tg',{opacity:1,y:0,duration:.45},'-=.3')
+      .to(['#sc-1','#sc-2','#sc-3'],{opacity:1,y:0,stagger:.14,duration:.55},'-=.2');
+  }else if(id==='r-services'){
+    tl.to('#sv-ey',{opacity:1,y:0,duration:.45})
+      .to('#sv-h .tin',{y:0,stagger:.12,duration:.6},'-=.2')
+      .to('#sv-note',{opacity:1,y:0,duration:.45},'-=.3')
+      .to(['#sv-1','#sv-2','#sv-3','#sv-4'],{opacity:1,y:0,stagger:.12,duration:.5},'-=.2');
   }
 }
 
