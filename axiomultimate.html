@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>AXIOM INTERIORS — Where Vision Becomes Structure</title>
+<meta name="description" content="Axiom Interiors — North Carolina's most distinguished home renovation studio. Custom kitchens, master suites, outdoor living, and infinity pools. Serving Raleigh, Durham, Chapel Hill and the greater Triangle area."/>
+<meta property="og:title" content="AXIOM INTERIORS — Where Vision Becomes Structure"/>
+<meta property="og:description" content="North Carolina's most distinguished home renovation studio. Built for those who demand the extraordinary."/>
+<meta name="theme-color" content="#06050d"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Syncopate:wght@400;700&family=Jost:wght@100;200;300;400&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Syncopate:wght@400;700&family=Jost:wght@100;200;300;400&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#06050d;--navy:#020810;
+  --cream:#f5f0e8;--cream-dim:rgba(245,240,232,0.62);
+  --coal:#1a1814;--coal-dim:rgba(26,24,20,0.58);
+  --gold:#c9a55a;--gold-b:#e8c070;--border-g:rgba(201,165,90,0.13);
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--void);color:var(--cream);font-family:'Jost',sans-serif;font-weight:200;cursor:none}
+#cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .18s,height .18s}
+#cur-ring{position:fixed;width:38px;height:38px;border:1px solid rgba(201,165,90,.42);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .42s cubic-bezier(.23,1,.32,1),height .42s cubic-bezier(.23,1,.32,1)}
+/* Hide cursor on touch devices */
+@media(hover:none),(pointer:coarse){
+  #cur,#cur-ring{display:none !important}
+}
+/* Cursor hover state — desktop only */
+@media(hover:hover){
+  .cx #cur{width:52px;height:52px;background:transparent;border:1px solid var(--gold)}
+  .cx #cur-ring{width:72px;height:72px}
+}
+
+/* ── INTRO ── */
+#intro{
+  position:fixed;inset:0;z-index:9500;
+  background:radial-gradient(ellipse 120% 120% at 50% 100%, #0a0620 0%, #02080e 50%, #010408 100%);
+  overflow:hidden;
+}
+#bp-canvas{position:absolute;inset:0;width:100%;height:100%}
+/* House reveal photo — dark dramatic exterior at dusk */
+#house-reveal{
+  position:absolute;inset:0;opacity:0;
+  background:url('Axiom-house.jpg') center/cover no-repeat;
+  filter:brightness(.28) saturate(1.4) contrast(1.05);
+}
+/* Vignette overlay on house reveal */
+#house-reveal::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(6,5,13,.15) 0%,rgba(6,5,13,.72) 100%);
+}
+/* Welcome UI */
+#wui{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;opacity:0;pointer-events:none}
+.wc-b{position:absolute;width:28px;height:28px;border-color:rgba(201,165,90,.5);border-style:solid;opacity:0}
+.wc-b.tl{top:2.5rem;left:2.5rem;border-width:1px 0 0 1px}
+.wc-b.tr{top:2.5rem;right:2.5rem;border-width:1px 1px 0 0}
+.wc-b.bl{bottom:2.5rem;left:2.5rem;border-width:0 0 1px 1px}
+.wc-b.br{bottom:2.5rem;right:2.5rem;border-width:0 1px 1px 0}
+.wloc{font-size:.56rem;font-weight:200;letter-spacing:.52em;text-transform:uppercase;color:var(--gold);opacity:0;transform:translateY(8px)}
+.wrule{width:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.wwm{font-family:'Syncopate',sans-serif;font-size:clamp(1.8rem,4.5vw,4.2rem);font-weight:700;letter-spacing:.28em;color:var(--cream);display:flex;flex-wrap:wrap;justify-content:center;gap:.1em}
+.wch{display:inline-block;opacity:0;transform:translateY(110%)}
+.wtag{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.7vw,1.35rem);font-weight:300;font-style:italic;letter-spacing:.22em;color:var(--cream-dim);opacity:0;transform:translateY(8px)}
+.wbtn{font-family:'Syncopate',sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,165,90,.52);padding:1rem 3rem;background:rgba(2,8,16,.5);backdrop-filter:blur(14px);cursor:none;opacity:0;transform:translateY(8px);transition:background .3s,box-shadow .3s,transform .2s;margin-top:.6rem}
+.wbtn:hover{background:rgba(201,165,90,.14);box-shadow:0 0 55px rgba(201,165,90,.18);transform:translateY(-2px)}
+.wplse{width:6px;height:6px;background:var(--gold);border-radius:50%;opacity:0;animation:pd 2s ease-in-out infinite}
+@keyframes pd{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(2.3);opacity:1}}
+#intro.out{opacity:0;transform:scale(1.04);transition:opacity 1.5s cubic-bezier(.4,0,.2,1),transform 1.5s cubic-bezier(.4,0,.2,1)}
+
+/* ── HUD ── */
+#hud{position:fixed;top:0;left:0;right:0;z-index:8000;display:flex;align-items:center;justify-content:space-between;padding:.9rem 3.5rem;background:rgba(6,5,13,0);border-bottom:1px solid transparent;transition:all .5s;opacity:0;pointer-events:none}
+#hud.on{opacity:1;pointer-events:all}
+#hud.solid{background:rgba(6,5,13,.92);backdrop-filter:blur(20px);border-color:var(--border-g)}
+.hm{font-family:'Syncopate',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.25em;color:var(--cream);text-decoration:none;display:flex;align-items:center;gap:.6rem;cursor:none}
+.hd{width:5px;height:5px;background:var(--gold);border-radius:50%}
+.hl{display:flex;gap:2.5rem;list-style:none}
+.hl a{font-size:.57rem;font-weight:200;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none;transition:color .2s;cursor:none;position:relative;padding-bottom:2px}
+.hl a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .28s}
+.hl a:hover{color:var(--gold)}
+.hl a:hover::after{width:100%}
+.hbtn{font-family:'Syncopate',sans-serif;font-size:.45rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:var(--void);border:none;padding:.65rem 1.6rem;cursor:none;transition:background .2s,box-shadow .2s}
+.hbtn:hover{background:var(--gold-b);box-shadow:0 4px 24px rgba(201,165,90,.4)}
+
+/* ── SITE — NATIVE CSS SCROLL SNAP (hardware accelerated) ── */
+#site{
+  position:fixed;inset:0;
+  overflow-y:scroll;
+  scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  opacity:0;pointer-events:none;
+  scrollbar-width:none;
+}
+#site::-webkit-scrollbar{display:none}
+#site.on{opacity:1;pointer-events:all}
+
+/* ── ROOMS ── */
+.room{
+  height:100vh;width:100%;
+  position:relative;
+  overflow:hidden;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  display:flex;
+}
+.rp{
+  position:absolute;inset:-8%;
+  background-size:cover;
+  background-position:center center;
+  background-attachment:scroll;
+  -webkit-background-size:cover;
+}
+/* ROOM PHOTOS */
+#r-entry .rp{background-image:url('https://images.unsplash.com/photo-1600210492493-0946911123ea?w=2200&q=92')}
+#r-entry .rp::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(245,240,232,.96) 36%,rgba(245,240,232,.28) 62%,rgba(245,240,232,.04) 100%)}
+#r-kitchen .rp{background-image:url('Axiom-kitchen.webp')}
+#r-kitchen .rp::after{content:'';position:absolute;inset:0;background:linear-gradient(255deg,rgba(18,16,12,.97) 38%,rgba(18,16,12,.32) 65%,rgba(18,16,12,.03) 100%)}
+#r-living .rp{background-image:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=2200&q=92')}
+#r-living .rp::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(245,241,236,.95) 36%,rgba(245,241,236,.2) 65%,rgba(245,241,236,.03) 100%)}
+#r-master .rp{background-image:url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=2200&q=92')}
+#r-master .rp::after{content:'';position:absolute;inset:0;background:linear-gradient(255deg,rgba(10,9,14,.97) 40%,rgba(10,9,14,.28) 65%,rgba(10,9,14,.04) 100%)}
+#r-pool .rp{background-image:url('Axiom-pool.jpg')}
+#r-pool .rp::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,5,13,.95) 0%,rgba(6,5,13,.35) 35%,rgba(6,5,13,.08) 60%,rgba(6,5,13,.2) 100%)}
+
+/* ── ROOM INNER LAYOUT ── */
+.rin{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:7rem 5rem 4rem;width:100%}
+#r-pool .rin{display:flex;flex-direction:column;justify-content:flex-end;padding:5rem}
+
+/* ── TYPOGRAPHY ── */
+.rnum{font-family:'Syncopate',sans-serif;font-size:.44rem;font-weight:400;letter-spacing:.35em;color:var(--gold);margin-bottom:.6rem;display:flex;align-items:center;gap:.8rem;opacity:0;transform:translateX(-20px)}
+.rnum::before{content:'';width:18px;height:1px;background:var(--gold)}
+.rnumr{font-family:'Syncopate',sans-serif;font-size:.44rem;font-weight:400;letter-spacing:.35em;color:var(--gold);margin-bottom:.6rem;display:flex;align-items:center;justify-content:flex-end;gap:.8rem;opacity:0;transform:translateX(20px)}
+.rnumr::after{content:'';width:18px;height:1px;background:var(--gold)}
+.rlbl{font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:var(--coal);margin-bottom:1.4rem;opacity:0;transform:translateX(-20px)}
+.rlbll{font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;opacity:0;transform:translateX(20px)}
+.rlblr{font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;text-align:right;opacity:0;transform:translateX(20px)}
+.rtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,4.5vw,5.4rem);font-weight:300;line-height:.92;letter-spacing:-.01em;color:var(--coal)}
+.rtitlel{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,4.5vw,5.4rem);font-weight:300;line-height:.92;letter-spacing:-.01em;color:var(--cream)}
+.rtitler{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,4.5vw,5.4rem);font-weight:300;line-height:.92;letter-spacing:-.01em;color:var(--cream);text-align:right}
+.rtitle em,.rtitlel em,.rtitler em{color:var(--gold);font-style:italic}
+.tln{display:block;overflow:hidden}
+.tin{display:block;transform:translateY(110%)}
+.rbody{font-size:.86rem;line-height:2.05;color:var(--coal-dim);font-weight:200;max-width:400px;margin-top:1.6rem;opacity:0;transform:translateY(14px)}
+.rbodyl{font-size:.86rem;line-height:2.05;color:var(--cream-dim);font-weight:200;max-width:400px;margin-top:1.6rem;opacity:0;transform:translateY(14px)}
+.rbodyr{font-size:.86rem;line-height:2.05;color:var(--cream-dim);font-weight:200;max-width:400px;margin-top:1.6rem;opacity:0;transform:translateY(14px);margin-left:auto;text-align:right}
+.racc{width:0;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-top:2rem}
+
+/* Feature cards */
+.fl{display:flex;flex-direction:column;gap:.72rem}
+.fc{padding:1.4rem 1.6rem;border:1px solid rgba(201,165,90,.18);background:rgba(255,255,255,.54);backdrop-filter:blur(8px);transition:border-color .3s,background .3s,transform .3s;cursor:none;position:relative;overflow:hidden;opacity:0;transform:translateX(30px)}
+.fc::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .5s cubic-bezier(.23,1,.32,1)}
+.fc:hover{border-color:rgba(201,165,90,.52);background:rgba(255,255,255,.9);transform:translateX(8px)}
+.fc:hover::after{width:100%}
+.fctag{position:absolute;top:.85rem;right:1rem;font-size:.5rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.fct{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--coal);margin-bottom:.32rem}
+.fcd{font-size:.78rem;font-weight:300;color:var(--coal-dim);line-height:1.82}
+
+/* Material rows */
+.mg{display:flex;flex-direction:column;gap:.65rem}
+.mi{display:flex;align-items:center;gap:1.2rem;padding:1.05rem 1.35rem;border:1px solid rgba(245,240,232,.07);background:rgba(245,240,232,.04);transition:border-color .3s,background .3s,transform .3s;cursor:none;opacity:0;transform:translateX(-30px)}
+.mi:hover{border-color:var(--gold);background:rgba(201,165,90,.07);transform:translateX(-8px)}
+.msw{width:44px;height:44px;flex-shrink:0;border:1px solid rgba(245,240,232,.1)}
+.swq{background:linear-gradient(135deg,#e8e4dc,#d8d0c4,#e4e0d8)}
+.swo{background:repeating-linear-gradient(90deg,#8b6340 0%,#7a5535 8%,#9a7248 16%,#8b6340 24%)}
+.swb{background:linear-gradient(135deg,#c9a550,#b89040,#d4b060)}
+.swz{background:linear-gradient(135deg,#f0ece4,#e5e0d6,#f0ebe2)}
+.swc{background:linear-gradient(135deg,#b8b4ae,#a8a4a0,#c0bcb8)}
+.mn{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:var(--cream)}
+.mo{font-size:.57rem;font-weight:200;letter-spacing:.22em;text-transform:uppercase;color:var(--cream-dim);margin-top:.14rem}
+
+/* Detail rows */
+.ds{display:flex;flex-direction:column}
+.dr{display:flex;gap:1.2rem;padding:1.25rem 0;border-bottom:1px solid rgba(201,165,90,.12);transition:border-color .3s;cursor:none;opacity:0;transform:translateX(30px)}
+.dr:hover{border-color:rgba(201,165,90,.38)}
+.dn{font-family:'Syncopate',sans-serif;font-size:.5rem;color:var(--gold);flex-shrink:0;margin-top:.2rem;letter-spacing:.1em}
+.dt{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--coal);margin-bottom:.32rem}
+.dd{font-size:.78rem;font-weight:300;color:var(--coal-dim);line-height:1.82}
+
+/* Spec grid */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,165,90,.1);margin-top:2rem}
+.sc{background:rgba(10,9,14,.8);backdrop-filter:blur(4px);padding:1.25rem 1.5rem;transition:background .3s;cursor:none;opacity:0;transform:translateY(14px)}
+.sc:hover{background:rgba(201,165,90,.08)}
+.sl{font-size:.5rem;font-weight:200;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+.sv{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:300;color:var(--cream)}
+
+/* Pool */
+.ptitle{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6.5vw,7.5rem);font-weight:300;line-height:.9;max-width:680px;margin-bottom:1.8rem}
+.ptitle em{color:var(--gold);font-style:italic}
+.pstats{display:flex;gap:3rem;flex-wrap:wrap;margin-top:2rem}
+.psn{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;color:var(--gold);line-height:1}
+.psl{font-size:.6rem;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--cream);margin-top:.2rem}
+.pfl{display:flex;flex-direction:column;gap:.48rem;max-width:480px;margin-top:2rem}
+.pfi{display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;background:rgba(6,5,13,.55);backdrop-filter:blur(8px);border:1px solid rgba(201,165,90,.2);font-size:.77rem;font-weight:300;color:var(--cream);letter-spacing:.04em;opacity:0;transform:translateX(-22px)}
+.pd{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+
+/* Room indicator dots */
+#room-dots{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:7000;display:flex;flex-direction:column;gap:.7rem;opacity:0;transition:opacity .5s}
+#room-dots.on{opacity:1}
+.rdot{width:6px;height:6px;border-radius:50%;background:rgba(201,165,90,.3);border:1px solid rgba(201,165,90,.4);transition:background .3s,transform .3s;cursor:none}
+.rdot.active{background:var(--gold);transform:scale(1.3)}
+
+/* BIZ PANEL */
+#bpanel{position:fixed;top:0;right:0;bottom:0;width:min(560px,95vw);z-index:9000;background:#faf7f2;transform:translateX(105%);transition:transform .7s cubic-bezier(.23,1,.32,1);overflow-y:auto;box-shadow:-20px 0 80px rgba(0,0,0,.35)}
+#bpanel.open{transform:translateX(0)}
+#bveil{position:fixed;inset:0;z-index:8999;background:rgba(6,5,13,.54);backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity .5s}
+#bveil.on{opacity:1;pointer-events:all}
+.bphd{padding:2.2rem 2.5rem 1.8rem;border-bottom:1px solid rgba(201,165,90,.14);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#faf7f2;z-index:1}
+.bpttl{font-family:'Syncopate',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;color:var(--coal)}
+.bpx{width:34px;height:34px;background:none;border:1px solid rgba(201,165,90,.3);cursor:none;display:flex;align-items:center;justify-content:center;font-size:.88rem;color:var(--coal);transition:all .2s}
+.bpx:hover{background:var(--gold);color:#fff}
+.bptbs{display:flex;border-bottom:1px solid rgba(201,165,90,.14);position:sticky;top:71px;background:#faf7f2;z-index:1}
+.bptb{flex:1;font-size:.54rem;font-weight:200;letter-spacing:.22em;text-transform:uppercase;color:rgba(26,24,20,.42);padding:.8rem .4rem;background:none;border:none;cursor:none;border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
+.bptb.on{color:var(--coal);border-bottom-color:var(--gold)}
+.bptb:hover{color:var(--coal)}
+.bppn{display:none;padding:2.4rem}
+.bppn.on{display:block}
+.bst{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;font-style:italic;color:var(--coal);margin-bottom:.28rem}
+.bss{font-size:.55rem;font-weight:200;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
+.btx{font-size:.8rem;line-height:1.95;color:rgba(26,24,20,.6);font-weight:200;margin-bottom:1.4rem}
+.bfrm{display:flex;flex-direction:column;gap:.8rem}
+.bfg{display:flex;flex-direction:column;gap:.28rem}
+.bfl{font-size:.5rem;font-weight:200;letter-spacing:.28em;text-transform:uppercase;color:rgba(26,24,20,.42)}
+.bfi,.bfs,.bft{background:#fff;border:1px solid rgba(201,165,90,.2);color:var(--coal);padding:.8rem 1rem;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:200;outline:none;transition:border-color .2s;cursor:none;width:100%;-webkit-appearance:none}
+.bfi:focus,.bfs:focus,.bft:focus{border-color:var(--gold)}
+.bfi::placeholder,.bft::placeholder{color:rgba(26,24,20,.24)}
+.bft{resize:vertical;min-height:86px}
+.bf2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.bfsb{font-family:'Syncopate',sans-serif;font-size:.46rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:var(--void);border:none;padding:1rem;cursor:none;margin-top:.4rem;transition:background .2s,box-shadow .2s}
+.bfsb:hover{background:var(--gold-b);box-shadow:0 4px 24px rgba(201,165,90,.3)}
+.bfsb.sent{background:#6a9e72;color:#fff}
+.svl{display:flex;flex-direction:column;gap:.44rem}
+.svr{display:flex;align-items:center;gap:1rem;padding:.86rem 1.1rem;border:1px solid rgba(201,165,90,.12);background:rgba(250,247,242,.6);transition:all .25s;cursor:none}
+.svr:hover{border-color:var(--gold);background:#fff;transform:translateX(4px)}
+.svdot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.svn{font-size:.72rem;font-weight:200;letter-spacing:.06em;color:var(--coal)}
+.svp{font-family:'Cormorant Garamond',serif;font-size:.94rem;font-weight:300;color:var(--gold);margin-left:auto}
+.trl{display:flex;flex-direction:column;gap:.8rem}
+.trw{padding:1.5rem;border:1px solid rgba(201,165,90,.15);background:rgba(250,247,242,.6);position:relative;cursor:none;transition:all .3s}
+.trw.star{border-color:var(--gold);background:#fff}
+.trw:hover{border-color:var(--gold);background:#fff}
+.trbdg{position:absolute;top:-1px;right:1.5rem;background:var(--gold);color:var(--void);font-family:'Syncopate',sans-serif;font-size:.37rem;font-weight:700;letter-spacing:.15em;padding:.22rem .55rem}
+.trn{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:400;color:var(--coal);margin-bottom:.2rem}
+.trp{font-family:'Syncopate',sans-serif;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.05em}
+.trd{font-size:.7rem;font-weight:200;color:rgba(26,24,20,.55);margin-top:.4rem;line-height:1.6}
+.abstats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,165,90,.1);margin-bottom:2rem}
+.absc{background:#faf7f2;padding:1.2rem;text-align:center}
+.absn{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--gold)}
+.absl{font-size:.5rem;font-weight:200;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,24,20,.44);margin-top:.2rem}
+
+@media(max-width:768px){
+  /* HUD */
+  #hud{padding:.7rem 1.2rem}
+  .hl{display:none}
+  .hm{font-size:.62rem}
+  .hbtn{font-size:.4rem;padding:.55rem 1rem}
+
+  /* SITE + ROOMS */
+  #room-dots{display:none}
+  .room{height:100vh;min-height:100vh}
+  .rin{
+    grid-template-columns:1fr !important;
+    gap:1.5rem;
+    padding:5.5rem 1.4rem 2rem;
+    align-items:flex-start;
+    overflow-y:auto;
+  }
+  #r-pool .rin{
+    padding:3.5rem 1.4rem 2rem;
+    justify-content:flex-end;
+  }
+
+  /* ROOM PHOTOS — force display on mobile */
+  .rp{
+    position:absolute;inset:-5% !important;
+    background-attachment:scroll !important;
+    -webkit-background-size:cover !important;
+    background-size:cover !important;
+    background-position:center center !important;
+    transform:none !important;
+  }
+
+  /* TYPOGRAPHY */
+  .rtitle,.rtitlel,.rtitler{
+    font-size:clamp(2.2rem,9vw,3.2rem) !important;
+    text-align:left !important;
+  }
+  .ptitle{font-size:clamp(2.2rem,9vw,3.5rem)}
+  .rtitler{text-align:left !important}
+  .rbodyr{text-align:left !important;margin-left:0 !important}
+  .rnumr{justify-content:flex-start !important}
+  .rnumr::after{display:none}
+  .rnumr::before{content:'';width:18px;height:1px;background:var(--gold);display:block}
+  .rlblr{text-align:left !important}
+  .rbody,.rbodyl,.rbodyr{font-size:.8rem;max-width:100%}
+  .rnum,.rnumr,.rlbl,.rlbll,.rlblr{margin-bottom:.5rem}
+
+  /* ROOM PHOTO OVERLAYS — mobile adjustments */
+  #r-entry .rp::after{
+    background:linear-gradient(180deg,rgba(245,240,232,.97) 0%,rgba(245,240,232,.88) 60%,rgba(245,240,232,.7) 100%) !important;
+  }
+  #r-kitchen .rp::after{
+    background:rgba(18,16,12,.92) !important;
+  }
+  #r-living .rp::after{
+    background:linear-gradient(180deg,rgba(245,241,236,.97) 0%,rgba(245,241,236,.85) 60%,rgba(245,241,236,.65) 100%) !important;
+  }
+  #r-master .rp::after{
+    background:rgba(10,9,14,.93) !important;
+  }
+  #r-pool .rp::after{
+    background:linear-gradient(to top,rgba(6,5,13,.97) 0%,rgba(6,5,13,.65) 45%,rgba(6,5,13,.35) 100%) !important;
+  }
+
+  /* Entry — hide feature cards on mobile (too cramped) */
+  #r-entry .rin > div:last-child{display:none}
+
+  /* Kitchen — stack vertically, text on top */
+  #r-kitchen .rin{flex-direction:column-reverse}
+  #r-kitchen .mg{order:2}
+  #r-kitchen .rin > div:last-child{order:1}
+  .mi{padding:.8rem 1rem}
+  .msw{width:36px;height:36px}
+  .mn{font-size:.88rem}
+
+  /* Living */
+  .dr{padding:.9rem 0}
+  .dt{font-size:.95rem}
+  .dd{font-size:.72rem}
+
+  /* Master */
+  #r-master .rin > div{grid-column:1 !important}
+  .sg{grid-template-columns:1fr 1fr}
+  .sc{padding:.9rem 1rem}
+  .sv{font-size:.9rem}
+  .sl{font-size:.46rem}
+
+  /* POOL — improve body text visibility */
+  #r-pool .rin{padding:3.5rem 1.4rem 2.5rem;justify-content:flex-end}
+  .ptitle{font-size:clamp(2rem,8vw,3rem);margin-bottom:1rem}
+  .pstats{gap:1.5rem;margin-top:1rem}
+  .psn{font-size:2rem}
+  .pfl{margin-top:1rem}
+  .pfi{padding:.7rem .9rem;font-size:.72rem}
+  #r-pool .rbodyl{font-size:.78rem;opacity:1;transform:none}
+
+  /* FEATURE CARDS */
+  .fl{gap:.55rem}
+  .fc{padding:1.1rem 1.2rem}
+  .fct{font-size:.95rem}
+  .fcd{font-size:.7rem}
+
+  /* INTRO */
+  .wwm{font-size:clamp(1.4rem,7.5vw,2.6rem);gap:.06em;letter-spacing:.18em}
+  .wbtn{padding:.85rem 2rem;font-size:.44rem;letter-spacing:.2em}
+  .wloc{font-size:.46rem;letter-spacing:.3em}
+  .wtag{font-size:.8rem;letter-spacing:.15em}
+  #wr-t,#wr-b{max-width:55px}
+  #wui{gap:.9rem;padding:0 1.2rem;text-align:center}
+
+  /* PROCESS */
+  .process-inner{
+    grid-template-columns:1fr !important;
+    gap:2rem;
+    padding:5.5rem 1.4rem 2rem;
+    overflow-y:auto;
+    height:100vh;
+  }
+  .process-heading{font-size:clamp(2.2rem,8vw,3rem)}
+  .process-sub{font-size:.8rem}
+  .process-stats{gap:1.5rem;margin-top:1.2rem}
+  .pstat-n{font-size:2rem}
+  .step-item{padding:.9rem 0}
+  .step-title{font-size:.95rem}
+  .step-desc{font-size:.7rem}
+  .steps-list::before{display:none}
+
+  /* STORIES — mobile slideshow */
+  .stories-inner{padding:5rem 1.4rem 2rem;overflow-y:auto;height:100vh}
+  .stories-header{flex-direction:column;gap:1rem;margin-bottom:2rem;border-color:rgba(201,165,90,.08)}
+  .stories-heading{font-size:clamp(2rem,8vw,3rem)}
+  .stories-tagline{text-align:left;max-width:100%;font-size:.78rem}
+  .stories-grid{
+    display:block !important;
+    position:relative;
+    overflow:hidden;
+    min-height:460px;
+    background:transparent !important;
+  }
+  .story-card{
+    display:none !important;
+    position:static !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:2rem 1.6rem;
+    border:1px solid rgba(201,165,90,.15);
+    opacity:0;
+    transform:none !important;
+    transition:opacity .6s ease !important;
+  }
+  .story-card.slide-active{
+    display:flex !important;
+    flex-direction:column !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+  .slide-dots{
+    display:flex;justify-content:center;gap:.7rem;margin-top:1.5rem;
+  }
+  .slide-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:rgba(201,165,90,.3);cursor:pointer;
+    transition:background .3s,transform .3s;
+  }
+  .slide-dot.on{background:var(--gold);transform:scale(1.3)}
+  .story-quote{font-size:.95rem;margin-bottom:1.2rem}
+  .story-tag{margin-bottom:1rem}
+  .story-stars{margin-bottom:.8rem}
+
+  /* SERVICES — single column on mobile for readability */
+  .services-inner{padding:5.5rem 1.4rem 2rem;overflow-y:auto;height:100vh}
+  .services-top{flex-direction:column;gap:.8rem;margin-bottom:1.8rem}
+  .services-heading{font-size:clamp(2rem,8vw,3rem)}
+  .services-note{font-size:.76rem;max-width:100%}
+  .services-grid{
+    grid-template-columns:1fr !important;
+    gap:1px;
+  }
+  .service-cat{padding:1.2rem 1rem}
+  .cat-title{font-size:1rem}
+  .cat-sub{font-size:.48rem;margin-bottom:.9rem;padding-bottom:.6rem}
+  .cat-list{gap:.4rem}
+  .cat-item{font-size:.7rem;line-height:1.55}
+  .cat-icon{font-size:1rem;margin-bottom:.6rem}
+
+  /* INTRO CORNER BRACKETS */
+  .wc-b{display:none}
+
+  /* BIZ PANEL */
+  #bpanel{width:95vw}
+  .bphd{padding:1.5rem 1.5rem 1.2rem}
+  .bppn{padding:1.5rem}
+  .bf2{grid-template-columns:1fr}
+}
+
+/* ══════════════════════════════════════════
+   SECTION: THE PROCESS
+══════════════════════════════════════════ */
+#r-process{
+  background:var(--void);
+  position:relative;overflow:hidden;
+}
+#r-process::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(201,165,90,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,165,90,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.process-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+  padding:7rem 5rem;width:100%;
+}
+.process-left{}
+.process-eyebrow{font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.6rem;opacity:0;transform:translateX(-20px)}
+.process-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+.process-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,4.5vw,5.2rem);font-weight:300;line-height:.92;letter-spacing:-.01em;color:var(--cream)}
+.process-heading em{color:var(--gold);font-style:italic}
+.process-sub{font-size:.86rem;line-height:2.05;color:var(--cream-dim);font-weight:200;max-width:380px;margin-top:1.6rem;opacity:0;transform:translateY(14px)}
+.process-stats{display:flex;gap:3rem;margin-top:2.5rem}
+.pstat{}
+.pstat-n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1;opacity:0;transform:translateY(14px)}
+.pstat-l{font-size:.54rem;font-weight:200;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-dim);margin-top:.2rem;opacity:0;transform:translateY(8px)}
+
+/* Step timeline */
+.steps-list{display:flex;flex-direction:column;gap:0;position:relative}
+.steps-list::before{
+  content:'';position:absolute;left:1.1rem;top:.5rem;bottom:.5rem;
+  width:1px;background:linear-gradient(to bottom,var(--gold),rgba(201,165,90,.1));
+}
+.step-item{
+  display:flex;gap:1.8rem;padding:1.4rem 0;
+  position:relative;cursor:none;
+  opacity:0;transform:translateX(28px);
+}
+.step-item:hover .step-num{background:var(--gold);color:var(--void)}
+.step-num{
+  width:22px;height:22px;border-radius:50%;
+  border:1px solid var(--gold);background:var(--void);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syncopate',sans-serif;font-size:.45rem;font-weight:700;
+  color:var(--gold);flex-shrink:0;margin-top:.15rem;
+  transition:background .25s,color .25s;position:relative;z-index:1;
+}
+.step-body{}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:400;color:var(--cream);margin-bottom:.3rem}
+.step-desc{font-size:.72rem;font-weight:200;color:var(--cream-dim);line-height:1.78}
+
+/* ══════════════════════════════════════════
+   SECTION: CLIENT STORIES — REDESIGNED
+══════════════════════════════════════════ */
+#r-stories{
+  background:var(--void);
+  position:relative;overflow:hidden;
+}
+#r-stories::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%,rgba(201,165,90,.04) 0%,transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 50%,rgba(100,160,255,.03) 0%,transparent 70%);
+  pointer-events:none;
+}
+.stories-inner{
+  position:relative;z-index:2;
+  padding:5rem 5rem;width:100%;
+  display:grid;grid-template-rows:auto 1fr;
+  height:100%;
+}
+.stories-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3rem;padding-bottom:1.5rem;
+  border-bottom:1px solid rgba(201,165,90,.12);
+}
+.stories-heading-wrap{}
+.stories-eyebrow{
+  font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;
+  opacity:0;transform:translateY(-10px);
+}
+.stories-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+.stories-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,3.5vw,4rem);font-weight:300;line-height:.95;
+  color:var(--cream);opacity:0;transform:translateY(-10px);
+}
+.stories-heading em{color:var(--gold);font-style:italic}
+.stories-tagline{
+  font-size:.82rem;font-weight:200;color:var(--cream-dim);
+  max-width:340px;line-height:1.85;opacity:0;transform:translateY(-10px);
+  text-align:right;
+}
+/* Story cards — dark editorial */
+.stories-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(201,165,90,.08);
+  align-items:stretch;
+}
+.story-card{
+  background:rgba(255,255,255,.025);
+  padding:2.5rem 2.2rem;
+  position:relative;overflow:hidden;
+  cursor:none;
+  transition:background .4s;
+  opacity:0;transform:translateY(28px);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.story-card:hover{background:rgba(201,165,90,.05)}
+/* Large background quote mark */
+.story-card::before{
+  content:'\201C';
+  position:absolute;top:-1rem;left:1.5rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:9rem;font-weight:400;
+  color:var(--gold);opacity:.08;
+  line-height:1;pointer-events:none;
+  transition:opacity .4s;
+}
+.story-card:hover::before{opacity:.14}
+/* Gold accent line at top */
+.story-card::after{
+  content:'';position:absolute;top:0;left:0;
+  width:0;height:2px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  transition:width .6s cubic-bezier(.23,1,.32,1);
+}
+.story-card:hover::after{width:100%}
+.story-tag{
+  font-family:'Syncopate',sans-serif;
+  font-size:.44rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:.6rem;
+  margin-bottom:1.8rem;
+}
+.story-tag::after{content:'';flex:1;height:1px;background:rgba(201,165,90,.18)}
+/* Stars */
+.story-stars{
+  display:flex;gap:.2rem;margin-bottom:1.2rem;
+}
+.story-star{color:var(--gold);font-size:.75rem}
+.story-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.08rem;font-weight:300;font-style:italic;
+  color:var(--cream);line-height:1.75;
+  margin-bottom:2rem;flex:1;
+}
+.story-meta{
+  border-top:1px solid rgba(201,165,90,.12);
+  padding-top:1.2rem;
+}
+.story-client{
+  font-family:'Jost',sans-serif;
+  font-size:.78rem;font-weight:400;
+  color:var(--cream);margin-bottom:.25rem;
+}
+.story-location{
+  font-size:.58rem;font-weight:200;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cream-dim);margin-bottom:.45rem;
+}
+.story-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.95rem;font-weight:300;
+  color:var(--gold);
+}
+
+/* ══════════════════════════════════════════
+   SECTION: FULL SERVICES
+══════════════════════════════════════════ */
+#r-services{
+  background:var(--void);
+  position:relative;overflow:hidden;
+}
+.services-inner{
+  position:relative;z-index:2;
+  padding:7rem 5rem;width:100%;
+}
+.services-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem}
+.services-heading-wrap{}
+.services-eyebrow{font-size:.56rem;font-weight:200;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;opacity:0;transform:translateY(-10px)}
+.services-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+.services-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,4rem);font-weight:300;line-height:.95;color:var(--cream);opacity:0;transform:translateY(-10px)}
+.services-heading em{color:var(--gold);font-style:italic}
+.services-note{font-size:.8rem;font-weight:200;color:var(--cream-dim);max-width:300px;line-height:1.8;opacity:0;transform:translateY(-10px)}
+
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,165,90,.08)}
+.service-cat{
+  background:var(--void);padding:2.2rem 2rem;
+  transition:background .3s;cursor:none;
+  opacity:0;transform:translateY(24px);
+}
+.service-cat:hover{background:rgba(201,165,90,.04)}
+.cat-icon{font-size:1.4rem;color:var(--gold);margin-bottom:1.2rem;opacity:.7}
+.cat-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--cream);margin-bottom:.4rem}
+.cat-sub{font-size:.54rem;font-weight:200;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,165,90,.1)}
+.cat-list{display:flex;flex-direction:column;gap:.55rem}
+.cat-item{font-size:.73rem;font-weight:200;color:var(--cream-dim);line-height:1.6;display:flex;gap:.7rem;align-items:flex-start;transition:color .2s}
+.cat-item::before{content:'—';color:rgba(201,165,90,.5);flex-shrink:0;font-size:.6rem;margin-top:.15rem}
+.cat-item:hover{color:var(--cream)}
+
+/* Scoped mobile overrides for new sections */
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- BIZ PANEL -->
+<div id="bveil" onclick="closeBiz()"></div>
+<div id="bpanel">
+  <div class="bphd"><div class="bpttl">AXIOM INTERIORS</div><button class="bpx" onclick="closeBiz()">✕</button></div>
+  <div class="bptbs">
+    <button class="bptb on" onclick="bpTab(this,'bpq')">Quote</button>
+    <button class="bptb" onclick="bpTab(this,'bps')">Services</button>
+    <button class="bptb" onclick="bpTab(this,'bpp')">Pricing</button>
+    <button class="bptb" onclick="bpTab(this,'bpa')">About</button>
+  </div>
+  <div class="bppn on" id="bpq">
+    <div class="bst">Begin your project.</div><div class="bss">Complimentary consultation · 24hr response</div>
+    <div class="btx">Every Axiom project begins with a conversation. Tell us what you want your home to feel like. We handle everything from there.</div>
+    <form class="bfrm" onsubmit="subBiz(event)" id="biz-form">
+      <div class="bf2"><div class="bfg"><label class="bfl">First Name</label><input class="bfi" name="first_name" placeholder="James"/></div><div class="bfg"><label class="bfl">Last Name</label><input class="bfi" name="last_name" placeholder="Whitmore"/></div></div>
+      <div class="bfg"><label class="bfl">Email</label><input class="bfi" name="email" type="email" placeholder="james@email.com" required/></div>
+      <div class="bfg"><label class="bfl">Phone</label><input class="bfi" name="phone" type="tel" placeholder="(919) 000-0000"/></div>
+      <div class="bfg"><label class="bfl">Project</label><select class="bfs" name="project"><option value="">Select...</option><option>Kitchen</option><option>Bathroom</option><option>Living Space</option><option>Master Suite</option><option>Outdoor & Pool</option><option>Full Home</option></select></div>
+      <div class="bfg"><label class="bfl">Investment</label><select class="bfs" name="investment"><option value="">Select...</option><option>$50K–$150K</option><option>$150K–$500K</option><option>$500K–$1M</option><option>$1M+</option></select></div>
+      <div class="bfg"><label class="bfl">Your Vision</label><textarea class="bft" name="vision" placeholder="Describe the spaces, the feeling, what excites you..."></textarea></div>
+      <button type="submit" class="bfsb" id="bsub">Send Project Inquiry →</button>
+    </form>
+  </div>
+  <div class="bppn" id="bps">
+    <div class="bst">What we do.</div><div class="bss">Full-spectrum · Design to delivery</div>
+    <div class="svl">
+      <div class="svr"><div class="svdot"></div><div class="svn">Kitchen Design & Renovation</div><div class="svp">From $80K</div></div>
+      <div class="svr"><div class="svdot"></div><div class="svn">Bathroom & Spa Design</div><div class="svp">From $45K</div></div>
+      <div class="svr"><div class="svdot"></div><div class="svn">Living & Entertainment Spaces</div><div class="svp">From $60K</div></div>
+      <div class="svr"><div class="svdot"></div><div class="svn">Master Suite Transformation</div><div class="svp">From $75K</div></div>
+      <div class="svr"><div class="svdot"></div><div class="svn">Outdoor Living & Pool</div><div class="svp">From $120K</div></div>
+      <div class="svr"><div class="svdot"></div><div class="svn">Custom Millwork & Cabinetry</div><div class="svp">From $30K</div></div>
+      <div class="svr"><div class="svdot"></div><div class="svn">Flooring & Surfaces</div><div class="svp">From $25K</div></div>
+      <div class="svr"><div class="svdot"></div><div class="svn">Full Home Transformation</div><div class="svp">From $500K</div></div>
+    </div>
+  </div>
+  <div class="bppn" id="bpp">
+    <div class="bst">Investment tiers.</div><div class="bss">Transparent · No surprises</div>
+    <div class="trl">
+      <div class="trw"><div class="trn">Refined</div><div class="trp">$50K – $150K</div><div class="trd">Single-room transformations with premium material selection.</div></div>
+      <div class="trw star"><div class="trbdg">Most Popular</div><div class="trn">Signature</div><div class="trp">$150K – $750K</div><div class="trd">Multi-room with bespoke curation, custom millwork, and architectural oversight.</div></div>
+      <div class="trw"><div class="trn">Legacy</div><div class="trp">$750K – $8M+</div><div class="trd">Complete home transformation as one permanent architectural statement.</div></div>
+    </div>
+  </div>
+  <div class="bppn" id="bpa">
+    <div class="abstats"><div class="absc"><div class="absn">340+</div><div class="absl">Homes</div></div><div class="absc"><div class="absn">16yr</div><div class="absl">Experience</div></div><div class="absc"><div class="absn">98%</div><div class="absl">Satisfaction</div></div></div>
+    <div class="bst">Built on obsession.</div><div class="bss">Raleigh · Durham · Chapel Hill · NC</div>
+    <div class="btx">Axiom Interiors was founded on a single conviction: that the homes people inhabit should be as extraordinary as the lives lived within them.</div>
+    <div class="btx" style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:rgba(26,24,20,.62)">"We don't renovate spaces. We architect the backdrop of your most important memories."</div>
+  </div>
+</div>
+
+<!-- HUD -->
+<nav id="hud">
+  <a href="#" class="hm" onclick="return false"><div class="hd"></div>AXIOM</a>
+  <ul class="hl">
+    <li><a href="#" onclick="goToRoom(0);return false">Entry</a></li>
+    <li><a href="#" onclick="goToRoom(1);return false">Kitchen</a></li>
+    <li><a href="#" onclick="goToRoom(2);return false">Living</a></li>
+    <li><a href="#" onclick="goToRoom(3);return false">Master</a></li>
+    <li><a href="#" onclick="goToRoom(4);return false">Pool</a></li>
+    <li><a href="#" onclick="goToRoom(5);return false">Process</a></li>
+    <li><a href="#" onclick="goToRoom(6);return false">Stories</a></li>
+    <li><a href="#" onclick="goToRoom(7);return false">Services</a></li>
+  </ul>
+  <button class="hbtn" onclick="openBiz()">Commission a Project</button>
+</nav>
+
+<!-- ROOM INDICATOR DOTS -->
+<div id="room-dots">
+  <div class="rdot active" onclick="goToRoom(0)"></div>
+  <div class="rdot" onclick="goToRoom(1)"></div>
+  <div class="rdot" onclick="goToRoom(2)"></div>
+  <div class="rdot" onclick="goToRoom(3)"></div>
+  <div class="rdot" onclick="goToRoom(4)"></div>
+  <div class="rdot" onclick="goToRoom(5)"></div>
+  <div class="rdot" onclick="goToRoom(6)"></div>
+  <div class="rdot" onclick="goToRoom(7)"></div>
+</div>
+
+<!-- INTRO -->
+<div id="intro">
+  <canvas id="bp-canvas"></canvas>
+  <div id="house-reveal"></div>
+  <div class="wc-b tl"></div><div class="wc-b tr"></div>
+  <div class="wc-b bl"></div><div class="wc-b br"></div>
+  <div id="wui">
+    <div class="wloc">Wake County · North Carolina · Est. 2008</div>
+    <div class="wrule" id="wr-t"></div>
+    <div class="wwm">
+      <span class="wch">A</span><span class="wch">X</span><span class="wch">I</span><span class="wch">O</span><span class="wch">M</span>
+      <span class="wch" style="width:.4em"> </span>
+      <span class="wch">I</span><span class="wch">N</span><span class="wch">T</span><span class="wch">E</span><span class="wch">R</span><span class="wch">I</span><span class="wch">O</span><span class="wch">R</span><span class="wch">S</span>
+    </div>
+    <div class="wtag">Where Vision Becomes Structure</div>
+    <div class="wrule" id="wr-b"></div>
+    <button class="wbtn" onclick="enterSite()">Enter the Home</button>
+    <div class="wplse"></div>
+  </div>
+</div>
+
+<!-- SITE (scroll snap container) -->
+<div id="site">
+
+  <!-- ENTRY -->
+  <section class="room" id="r-entry">
+    <div class="rp"></div>
+    <div class="rin">
+      <div>
+        <div class="rnum">— 01</div>
+        <div class="rlbl">The Entry Hall</div>
+        <h2 class="rtitle">
+          <span class="tln"><span class="tin">The first</span></span>
+          <span class="tln"><span class="tin">impression</span></span>
+          <span class="tln"><span class="tin"><em>is everything.</em></span></span>
+        </h2>
+        <p class="rbody">Every Axiom home announces itself the moment the door opens. Hand-laid stone floors, soaring concrete ceilings, and custom millwork that tells you — this space was built with absolute intention.</p>
+        <div class="racc" id="en-acc"></div>
+      </div>
+      <div class="fl">
+        <div class="fc"><div class="fctag">Signature</div><div class="fct">Calacatta Marble Entry Floor</div><div class="fcd">Hand-selected bookmatched slabs in a diagonal field. Custom brass inlay borders at every threshold.</div></div>
+        <div class="fc"><div class="fctag">Structural</div><div class="fct">Exposed Concrete Ceiling — 14ft</div><div class="fcd">Raw formed concrete left exposed and sealed. Hidden LED channels in the shadow reveals. Statement chandelier on axis.</div></div>
+        <div class="fc"><div class="fctag">Millwork</div><div class="fct">Floor-to-Ceiling White Oak Paneling</div><div class="fcd">Custom fluted white oak with aged brass hardware. Concealed storage the full length of the east wall.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KITCHEN -->
+  <section class="room" id="r-kitchen">
+    <div class="rp"></div>
+    <div class="rin">
+      <div class="mg">
+        <div class="rlbll">Material Palette</div>
+        <div class="mi"><div class="msw swq"></div><div><div class="mn">Calacatta Gold Quartz — Waterfall Edge</div><div class="mo">Engineered Stone · Carrara, Italy</div></div></div>
+        <div class="mi"><div class="msw swo"></div><div><div class="mn">White Oak Slab Cabinet Fronts</div><div class="mo">Wire Brushed · Integrated Finger Pull</div></div></div>
+        <div class="mi"><div class="msw swb"></div><div><div class="mn">Unlacquered Brass Hardware</div><div class="mo">Living Finish · Ages with Time</div></div></div>
+        <div class="mi"><div class="msw swz"></div><div><div class="mn">Handmade Zellige Tile Backsplash</div><div class="mo">Artisan · Fès, Morocco</div></div></div>
+        <div class="mi"><div class="msw swc"></div><div><div class="mn">Honed Concrete Floor — Radiant Heat</div><div class="mo">Poured In Place · Sealed</div></div></div>
+      </div>
+      <div>
+        <div class="rnumr">02 —</div>
+        <div class="rlblr">The Kitchen</div>
+        <h2 class="rtitler">
+          <span class="tln"><span class="tin">Where craft</span></span>
+          <span class="tln"><span class="tin">meets</span></span>
+          <span class="tln"><span class="tin"><em>obsession.</em></span></span>
+        </h2>
+        <p class="rbodyr">Nothing standard, nothing afterthought. The island is a single slab of stone. The cabinetry is architecture. Every surface resolved with the precision of a watch movement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVING -->
+  <section class="room" id="r-living">
+    <div class="rp"></div>
+    <div class="rin">
+      <div>
+        <div class="rnum">— 03</div>
+        <div class="rlbl">The Living Room</div>
+        <h2 class="rtitle">
+          <span class="tln"><span class="tin">A room that</span></span>
+          <span class="tln"><span class="tin"><em>lives</em> with you.</span></span>
+        </h2>
+        <p class="rbody">Designed to perform for quiet mornings and evenings that fill every room. The fireplace is carved from a single block of French limestone and runs floor to ceiling. Everything else serves it.</p>
+        <div class="racc" id="lv-acc"></div>
+      </div>
+      <div class="ds">
+        <div class="dr"><div class="dn">01</div><div><div class="dt">Custom Limestone Fireplace</div><div class="dd">Hand-carved French limestone, floor-to-ceiling. Integrated steel hearth and concealed log storage behind the south panel.</div></div></div>
+        <div class="dr"><div class="dn">02</div><div><div class="dt">Wide Plank White Oak Floors</div><div class="dd">10" engineered white oak, wire brushed, custom light ash stain. Runs without interruption through all ground-floor spaces.</div></div></div>
+        <div class="dr"><div class="dn">03</div><div><div class="dt">Formed Concrete Coffered Ceiling</div><div class="dd">14-foot poured concrete with deep shadow coffers. Recessed gold leaf accent lines at every field intersection.</div></div></div>
+        <div class="dr"><div class="dn">04</div><div><div class="dt">Floor-to-Ceiling Glass Wall</div><div class="dd">Steel and glass on the south face. Four panels retract fully to dissolve the boundary between inside and terrace.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MASTER -->
+  <section class="room" id="r-master">
+    <div class="rp"></div>
+    <div class="rin">
+      <div style="grid-column:2">
+        <div class="rnumr">04 —</div>
+        <div class="rlblr">The Master Suite</div>
+        <h2 class="rtitler">
+          <span class="tln"><span class="tin">A sanctuary</span></span>
+          <span class="tln"><span class="tin">built for</span></span>
+          <span class="tln"><span class="tin"><em>stillness.</em></span></span>
+        </h2>
+        <p class="rbodyr">The most personal room in any home. We approach it as a conversation about how you want to feel every morning. Raw concrete headwall. Warm oak trim. Light that knows when to be quiet.</p>
+        <div class="sg">
+          <div class="sc"><div class="sl">Headwall</div><div class="sv">Raw Concrete + Oak</div></div>
+          <div class="sc"><div class="sl">Ceiling</div><div class="sv">Tray + Cove Light</div></div>
+          <div class="sc"><div class="sl">Flooring</div><div class="sv">Radiant Honed Marble</div></div>
+          <div class="sc"><div class="sl">Closet</div><div class="sv">Walk-In, Full Custom</div></div>
+          <div class="sc"><div class="sl">Ensuite</div><div class="sv">Steam + Soaking Tub</div></div>
+          <div class="sc"><div class="sl">Hardware</div><div class="sv">Aged Brass Throughout</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POOL -->
+  <section class="room" id="r-pool">
+    <div class="rp"></div>
+    <div class="rin">
+      <div>
+        <div class="rnum" style="color:rgba(245,240,232,.55)">— 05</div>
+        <div class="rlbll" style="color:rgba(245,240,232,.55)">The Outdoor Sanctuary</div>
+        <div class="ptitle">
+          <span class="tln"><span class="tin">The infinity</span></span>
+          <span class="tln"><span class="tin">pool that</span></span>
+          <span class="tln"><span class="tin">defines <em>forever.</em></span></span>
+        </div>
+        <p class="rbodyl" style="max-width:480px">Where the water vanishes into the horizon. Our signature vanishing-edge pools are engineered to disappear into the landscape — a seamless threshold between the home you built and the world beyond it.</p>
+        <div class="pstats">
+          <div><div class="psn">∞</div><div class="psl">Vanishing Edge</div></div>
+          <div><div class="psn">180°</div><div class="psl">Panoramic View</div></div>
+          <div><div class="psn">LED</div><div class="psl">Tunable Spectrum</div></div>
+          <div><div class="psn">10yr</div><div class="psl">Full Warranty</div></div>
+        </div>
+        <div class="pfl">
+          <div class="pfi"><div class="pd"></div>Honed travertine pool deck with custom brass inlay border</div>
+          <div class="pfi"><div class="pd"></div>Outdoor kitchen — built-in grill, sink, refrigeration</div>
+          <div class="pfi"><div class="pd"></div>Covered terrace with retractable full-glass wall system</div>
+          <div class="pfi"><div class="pd"></div>Architectural landscape lighting — performs after dark</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 6: THE PROCESS ══════════ -->
+  <section class="room" id="r-process">
+    <div class="process-inner">
+      <div class="process-left">
+        <div class="process-eyebrow" id="pr-ey">How We Build</div>
+        <h2 class="process-heading" id="pr-h">
+          <span class="tln"><span class="tin">Five steps.</span></span>
+          <span class="tln"><span class="tin">Zero</span></span>
+          <span class="tln"><span class="tin"><em>surprises.</em></span></span>
+        </h2>
+        <p class="process-sub" id="pr-sub">Every Axiom project follows the same meticulous process — from the first conversation to the moment we hand you the keys. You always know exactly where we are and what comes next.</p>
+        <div class="process-stats" id="pr-stats">
+          <div><div class="pstat-n" id="pst-1">340+</div><div class="pstat-l" id="psl-1">Projects Delivered</div></div>
+          <div><div class="pstat-n" id="pst-2">98%</div><div class="pstat-l" id="psl-2">On-Time Completion</div></div>
+          <div><div class="pstat-n" id="pst-3">10yr</div><div class="pstat-l" id="psl-3">Craft Warranty</div></div>
+        </div>
+      </div>
+      <div class="steps-list" id="pr-steps">
+        <div class="step-item" id="st-1">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <div class="step-title">Discovery & Vision</div>
+            <div class="step-desc">We visit your home, walk every space, and listen to how you live. No measurements yet — just conversation. We learn what you want to feel, not just what you want to build.</div>
+          </div>
+        </div>
+        <div class="step-item" id="st-2">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <div class="step-title">Design Concept</div>
+            <div class="step-desc">Our design team develops a full concept — floor plans, material mood boards, renderings, and a detailed scope of work. You see everything before a single wall moves.</div>
+          </div>
+        </div>
+        <div class="step-item" id="st-3">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <div class="step-title">Material Curation</div>
+            <div class="step-desc">We source globally. Stone from Italy, oak from the Pacific Northwest, brass from Belgium. Every material is presented in person so you feel it before you commit to it.</div>
+          </div>
+        </div>
+        <div class="step-item" id="st-4">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <div class="step-title">The Build</div>
+            <div class="step-desc">Our crew arrives on day one and doesn't leave until the work is done. Weekly updates, a dedicated project manager, and a job site that stays clean. No subcontractor chaos.</div>
+          </div>
+        </div>
+        <div class="step-item" id="st-5">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <div class="step-title">The Reveal</div>
+            <div class="step-desc">The moment we build every project toward. We walk the completed home with you, room by room. Nothing is signed off until you are completely satisfied with every detail.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 7: CLIENT STORIES ══════════ -->
+  <section class="room" id="r-stories">
+    <div class="stories-inner">
+      <div class="stories-header">
+        <div class="stories-heading-wrap">
+          <div class="stories-eyebrow" id="st-ey">Client Stories</div>
+          <h2 class="stories-heading" id="st-h">
+            <span class="tln"><span class="tin">Told in their</span></span>
+            <span class="tln"><span class="tin"><em>own words.</em></span></span>
+          </h2>
+        </div>
+        <p class="stories-tagline" id="st-tg" style="color:var(--cream-dim)">Every home we build becomes a relationship that outlasts the project. These are the people who trusted us with the most personal spaces in their lives.</p>
+      </div>
+      <div class="stories-grid">
+        <div class="story-card" id="sc-1">
+          <div>
+            <div class="story-tag">Kitchen · Raleigh, NC</div>
+            <div class="story-stars"><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span></div>
+            <div class="story-quote">"From the first meeting we knew Axiom was different. They asked how we wanted to feel in the kitchen at 7am, not just what cabinets we wanted. The result is something we could not have imagined ourselves — and we use it every single day."</div>
+          </div>
+          <div class="story-meta">
+            <div class="story-client">Elaine & Robert Marsh</div>
+            <div class="story-location">Raleigh · North Carolina</div>
+            <div class="story-value">Full Kitchen Renovation · $240,000</div>
+          </div>
+        </div>
+        <div class="story-card" id="sc-2">
+          <div>
+            <div class="story-tag">Full Home · Chapel Hill, NC</div>
+            <div class="story-stars"><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span></div>
+            <div class="story-quote">"We interviewed six firms before Axiom. The others showed us their past work. Axiom showed us our future home — rendered in detail, every material chosen, every room considered. It wasn't even a difficult decision."</div>
+          </div>
+          <div class="story-meta">
+            <div class="story-client">Sandra & James Keller</div>
+            <div class="story-location">Chapel Hill · North Carolina</div>
+            <div class="story-value">Complete Transformation · $1.8M</div>
+          </div>
+        </div>
+        <div class="story-card" id="sc-3">
+          <div>
+            <div class="story-tag">Outdoor Living · Durham, NC</div>
+            <div class="story-stars"><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span><span class="story-star">★</span></div>
+            <div class="story-quote">"The infinity pool and terrace they designed have become the most-used space in our entire home. Our backyard now gets more time than our living room. The boundary between inside and outside simply ceased to exist."</div>
+          </div>
+          <div class="story-meta">
+            <div class="story-client">Marcus & Diana Thornton</div>
+            <div class="story-location">Durham · North Carolina</div>
+            <div class="story-value">Outdoor Sanctuary · $480,000</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-dots" id="slide-dots" style="display:none">
+        <div class="slide-dot on" onclick="goSlide(0)"></div>
+        <div class="slide-dot" onclick="goSlide(1)"></div>
+        <div class="slide-dot" onclick="goSlide(2)"></div>
+      </div>
+    </div>
+  </section>
+  <section class="room" id="r-services">
+    <div class="services-inner">
+      <div class="services-top">
+        <div class="services-heading-wrap">
+          <div class="services-eyebrow" id="sv-ey">Full Scope of Work</div>
+          <h2 class="services-heading" id="sv-h">
+            <span class="tln"><span class="tin">Everything we</span></span>
+            <span class="tln"><span class="tin"><em>can do for you.</em></span></span>
+          </h2>
+        </div>
+        <p class="services-note" id="sv-note">Every discipline handled in-house. One team, one vision, no handoffs. We are not a general contractor who hires other contractors — we are architects, designers, and builders under one roof.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-cat" id="sv-1">
+          <div class="cat-icon">⬡</div>
+          <div class="cat-title">Interior Architecture</div>
+          <div class="cat-sub">The spaces you live in</div>
+          <div class="cat-list">
+            <div class="cat-item">Full kitchen redesign & renovation</div>
+            <div class="cat-item">Bathroom & spa design</div>
+            <div class="cat-item">Living & dining space transformation</div>
+            <div class="cat-item">Master suite & dressing room</div>
+            <div class="cat-item">Home office & library design</div>
+            <div class="cat-item">Custom built-ins & cabinetry</div>
+            <div class="cat-item">Ceiling & wall architecture</div>
+            <div class="cat-item">Lighting design & integration</div>
+          </div>
+        </div>
+        <div class="service-cat" id="sv-2">
+          <div class="cat-icon">◎</div>
+          <div class="cat-title">Exterior & Outdoor</div>
+          <div class="cat-sub">Beyond the walls</div>
+          <div class="cat-list">
+            <div class="cat-item">Infinity & vanishing-edge pools</div>
+            <div class="cat-item">Covered terrace & outdoor living</div>
+            <div class="cat-item">Outdoor kitchen & bar design</div>
+            <div class="cat-item">Landscape architecture</div>
+            <div class="cat-item">Driveway & motor court design</div>
+            <div class="cat-item">Exterior facade & cladding</div>
+            <div class="cat-item">Architectural lighting systems</div>
+            <div class="cat-item">Pergola & shade structure</div>
+          </div>
+        </div>
+        <div class="service-cat" id="sv-3">
+          <div class="cat-icon">◈</div>
+          <div class="cat-title">Surfaces & Materials</div>
+          <div class="cat-sub">What you touch every day</div>
+          <div class="cat-list">
+            <div class="cat-item">Natural stone selection & installation</div>
+            <div class="cat-item">Hardwood & engineered flooring</div>
+            <div class="cat-item">Tile, zellige & mosaic work</div>
+            <div class="cat-item">Polished & honed concrete</div>
+            <div class="cat-item">Custom millwork & trim</div>
+            <div class="cat-item">Plaster & specialty wall finishes</div>
+            <div class="cat-item">Metal & glass fabrication</div>
+            <div class="cat-item">Upholstery & soft goods</div>
+          </div>
+        </div>
+        <div class="service-cat" id="sv-4">
+          <div class="cat-icon">◫</div>
+          <div class="cat-title">Technology & Systems</div>
+          <div class="cat-sub">The intelligence behind it all</div>
+          <div class="cat-list">
+            <div class="cat-item">Whole-home automation (Lutron, Crestron)</div>
+            <div class="cat-item">Integrated AV & home theater</div>
+            <div class="cat-item">Circadian & architectural lighting control</div>
+            <div class="cat-item">Radiant floor heating systems</div>
+            <div class="cat-item">Concealed HVAC design</div>
+            <div class="cat-item">Security & access control</div>
+            <div class="cat-item">Pool automation & climate systems</div>
+            <div class="cat-item">EV charging & energy infrastructure</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /site -->
+
+<script>
+// ── CURSOR — desktop only ──
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+const isTouch=('ontouchstart' in window)||window.matchMedia('(pointer:coarse)').matches;
+if(!isTouch){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  (function tick(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cur.style.left=mx+'px';cur.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)})();
+  document.querySelectorAll('a,button,.fc,.mi,.dr,.sc,.svr,.trw,.wbtn,.rdot').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cx'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cx'));
+  });
+}
+
+// ── HUD ──
+const hud=document.getElementById('hud');
+
+// ── BIZ ──
+function openBiz(){document.getElementById('bpanel').classList.add('open');document.getElementById('bveil').classList.add('on');document.body.style.overflow='hidden'}
+function closeBiz(){document.getElementById('bpanel').classList.remove('open');document.getElementById('bveil').classList.remove('on');document.body.style.overflow=''}
+function bpTab(btn,id){document.querySelectorAll('.bptb').forEach(t=>t.classList.remove('on'));document.querySelectorAll('.bppn').forEach(p=>p.classList.remove('on'));btn.classList.add('on');document.getElementById(id).classList.add('on')}
+async function subBiz(e){
+  e.preventDefault();
+  const b=document.getElementById('bsub');
+  b.textContent='Sending...';b.disabled=true;
+  const form=document.getElementById('biz-form');
+  const data=new FormData(form);
+  try{
+    const res=await fetch('https://formspree.io/f/xojbglqw',{method:'POST',body:data,headers:{'Accept':'application/json'}});
+    if(res.ok){
+      b.textContent="Request Received — We'll Be In Touch";
+      b.classList.add('sent');
+      form.reset();
+      setTimeout(()=>{b.textContent='Send Project Inquiry →';b.classList.remove('sent');b.disabled=false;},5000);
+    }else{
+      b.textContent='Something went wrong — please try again';
+      b.disabled=false;
+    }
+  }catch(err){
+    b.textContent='Something went wrong — please try again';
+    b.disabled=false;
+  }
+}
+
+// ROOM NAVIGATION — pure CSS snap handles scrolling
+// JS only tracks which room is visible for dots + animations
+const rooms=['r-entry','r-kitchen','r-living','r-master','r-pool','r-process','r-stories','r-services'];
+let currentRoom=0;
+const site=document.getElementById('site');
+const dots=document.querySelectorAll('.rdot');
+
+function goToRoom(idx){
+  if(idx<0||idx>=rooms.length)return;
+  currentRoom=idx;
+  document.getElementById(rooms[idx]).scrollIntoView({behavior:'smooth'});
+}
+
+// Touch support for mobile
+let touchY=0;
+site.addEventListener('touchstart',e=>{touchY=e.touches[0].clientY},{passive:true});
+site.addEventListener('touchend',e=>{
+  const diff=touchY-e.changedTouches[0].clientY;
+  if(Math.abs(diff)>50)goToRoom(diff>0?currentRoom+1:currentRoom-1);
+},{passive:true});
+
+// ENTER SITE
+function enterSite(){
+  gsap.to('#intro',{opacity:0,scale:1.04,duration:1.5,ease:'power2.inOut',onComplete:()=>{
+    document.getElementById('intro').style.display='none';
+    site.classList.add('on');
+    hud.classList.add('on');
+    hud.classList.add('solid');
+    document.getElementById('room-dots').classList.add('on');
+    // IntersectionObserver tracks which room is visible
+    const roomObs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const idx=rooms.indexOf(e.target.id);
+          if(idx>=0){
+            currentRoom=idx;
+            dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+            hud.classList.add('solid');
+            playRoom(idx);
+          }
+        }
+      });
+    },{threshold:0.6});
+    rooms.forEach(id=>roomObs.observe(document.getElementById(id)));
+    playRoom(0);
+    currentRoom=0;
+  }});
+}
+
+// ── ROOM ANIMATIONS ── (fire once per room on enter)
+const played=new Set();
+function playRoom(idx){
+  if(played.has(idx))return;
+  played.add(idx);
+  const id=rooms[idx];
+  const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+  if(id==='r-entry'){
+    tl.to(`#${id} .rnum`,{opacity:1,x:0,duration:.45})
+      .to(`#${id} .rlbl`,{opacity:1,x:0,duration:.4},'-=.2')
+      .to(`#${id} .tin`,{y:0,stagger:.1,duration:.6},'-=.15')
+      .to(`#${id} .rbody`,{opacity:1,y:0,duration:.45},'-=.3')
+      .to('#en-acc',{width:'100px',duration:.45,ease:'power2.out'},'-=.35')
+      .to(`#${id} .fc`,{opacity:1,x:0,stagger:.12,duration:.45},'-=.3');
+  }else if(id==='r-kitchen'){
+    tl.to(`#${id} .rnumr`,{opacity:1,x:0,duration:.45})
+      .to(`#${id} .rlblr`,{opacity:1,x:0,duration:.4},'-=.2')
+      .to(`#${id} .tin`,{y:0,stagger:.1,duration:.6},'-=.15')
+      .to(`#${id} .rbodyr`,{opacity:1,y:0,duration:.45},'-=.3')
+      .to(`#${id} .rlbll`,{opacity:1,x:0,duration:.4},'-=.5')
+      .to(`#${id} .mi`,{opacity:1,x:0,stagger:.1,duration:.42},'-=.2');
+  }else if(id==='r-living'){
+    tl.to(`#${id} .rnum`,{opacity:1,x:0,duration:.45})
+      .to(`#${id} .rlbl`,{opacity:1,x:0,duration:.4},'-=.2')
+      .to(`#${id} .tin`,{y:0,stagger:.1,duration:.6},'-=.15')
+      .to(`#${id} .rbody`,{opacity:1,y:0,duration:.45},'-=.3')
+      .to('#lv-acc',{width:'100px',duration:.45,ease:'power2.out'},'-=.35')
+      .to(`#${id} .dr`,{opacity:1,x:0,stagger:.1,duration:.42},'-=.3');
+  }else if(id==='r-master'){
+    tl.to(`#${id} .rnumr`,{opacity:1,x:0,duration:.45})
+      .to(`#${id} .rlblr`,{opacity:1,x:0,duration:.4},'-=.2')
+      .to(`#${id} .tin`,{y:0,stagger:.1,duration:.6},'-=.15')
+      .to(`#${id} .rbodyr`,{opacity:1,y:0,duration:.45},'-=.3')
+      .to(`#${id} .sc`,{opacity:1,y:0,stagger:.08,duration:.38},'-=.2');
+  }else if(id==='r-pool'){
+    tl.to(`#${id} .rnum`,{opacity:1,y:0,duration:.45})
+      .to(`#${id} .rlbll`,{opacity:1,y:0,duration:.4},'-=.2')
+      .to(`#${id} .tin`,{y:0,stagger:.1,duration:.65},'-=.15')
+      .to(`#${id} .rbodyl`,{opacity:1,y:0,duration:.45},'-=.3')
+      .to(`#${id} .psn`,{opacity:1,y:0,stagger:.1,duration:.45},'-=.2')
+      .to(`#${id} .pfi`,{opacity:1,x:0,stagger:.1,duration:.42},'-=.2');
+  }else if(id==='r-process'){
+    tl.to('#pr-ey',{opacity:1,x:0,duration:.45})
+      .to('#r-process .tin',{y:0,stagger:.1,duration:.6},'-=.2')
+      .to('#pr-sub',{opacity:1,y:0,duration:.45},'-=.3')
+      .to(['#pst-1','#psl-1','#pst-2','#psl-2','#pst-3','#psl-3'],{opacity:1,y:0,stagger:.07,duration:.4},'-=.2')
+      .to(['#st-1','#st-2','#st-3','#st-4','#st-5'],{opacity:1,x:0,stagger:.12,duration:.5},'-=.4');
+  }else if(id==='r-stories'){
+    tl.to('#st-ey',{opacity:1,y:0,duration:.45})
+      .to('#st-h .tin',{y:0,stagger:.12,duration:.6},'-=.2')
+      .to('#st-tg',{opacity:1,y:0,duration:.45},'-=.3');
+    // On desktop only — on mobile the slideshow JS handles cards
+    if(window.innerWidth>768){
+      tl.to(['#sc-1','#sc-2','#sc-3'],{opacity:1,y:0,stagger:.14,duration:.55},'-=.2');
+    }
+  }else if(id==='r-services'){
+    tl.to('#sv-ey',{opacity:1,y:0,duration:.45})
+      .to('#sv-h .tin',{y:0,stagger:.12,duration:.6},'-=.2')
+      .to('#sv-note',{opacity:1,y:0,duration:.45},'-=.3')
+      .to(['#sv-1','#sv-2','#sv-3','#sv-4'],{opacity:1,y:0,stagger:.12,duration:.5},'-=.2');
+  }
+}
+
+// Scroll listener handled by IntersectionObserver above
+
+// ═══════════════════════════════════════════════════════
+// ISOMETRIC 3D BLUEPRINT — 17% BIGGER THAN V5
+// ═══════════════════════════════════════════════════════
+(function(){
+  const C=document.getElementById('bp-canvas');
+  const ctx=C.getContext('2d');
+  let W,H,DPR=Math.min(window.devicePixelRatio||1,2);
+  function resize(){
+    W=window.innerWidth;H=window.innerHeight;
+    C.width=W*DPR;C.height=H*DPR;
+    C.style.width=W+'px';C.style.height=H+'px';
+    ctx.scale(DPR,DPR);
+  }
+  resize();window.addEventListener('resize',()=>{DPR=Math.min(window.devicePixelRatio||1,2);resize()});
+
+  // Isometric projection — scaled for screen size
+  const WALL_H=0.14;
+  function iso(nx,ny,nz=0){
+    const cx=nx-0.5,cy=ny-0.5;
+    const base=Math.min(W,H);
+    const mob=W<768;
+    const SX=base*(mob?0.36:0.515);
+    const SY=base*(mob?0.18:0.258);
+    const SZ=base*(mob?0.26:0.375);
+    const centerY=mob?0.48:0.44;
+    return[W*0.5+(cx-cy)*SX, H*centerY+(cx+cy)*SY-nz*SZ];
+  }
+
+  function gLine(x0,y0,x1,y1,s){
+    ctx.save();ctx.shadowBlur=s.glow;ctx.shadowColor=s.gc;ctx.strokeStyle=s.c;ctx.lineWidth=s.w;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();ctx.restore();
+  }
+  function gDot(x,y,s){
+    ctx.save();ctx.shadowBlur=s.glow*1.4;ctx.shadowColor=s.c;ctx.fillStyle='rgba(210,232,255,.95)';
+    ctx.beginPath();ctx.arc(x,y,2.4,0,Math.PI*2);ctx.fill();ctx.restore();
+  }
+  function gArc(cx2,cy2,r,a0,a1,s){
+    ctx.save();ctx.shadowBlur=s.glow;ctx.shadowColor=s.gc;ctx.strokeStyle=s.c;ctx.lineWidth=s.w;
+    ctx.beginPath();ctx.arc(cx2,cy2,r,a0,a1);ctx.stroke();ctx.restore();
+  }
+
+  const ST={
+    outer:{w:2.4,glow:18,c:'rgba(110,198,255,.92)',gc:'rgba(80,170,255,.62)'},
+    inner:{w:1.5,glow:10,c:'rgba(100,188,255,.76)',gc:'rgba(70,158,255,.42)'},
+    detail:{w:.95,glow:6,c:'rgba(100,188,255,.58)',gc:'rgba(70,158,255,.28)'},
+    stair:{w:.72,glow:4,c:'rgba(100,188,255,.42)',gc:'rgba(70,158,255,.18)'},
+    furn:{w:.65,glow:3,c:'rgba(100,188,255,.34)',gc:'rgba(70,158,255,.14)'},
+    win:{w:3.8,glow:9,c:'rgba(168,228,255,.85)',gc:'rgba(140,212,255,.5)'},
+    dim:{w:.68,glow:6,c:'rgba(201,165,90,.63)',gc:'rgba(201,165,90,.32)'},
+    vert:{w:1.1,glow:8,c:'rgba(120,202,255,.6)',gc:'rgba(90,178,255,.35)'},
+    roof:{w:1.5,glow:12,c:'rgba(140,212,255,.76)',gc:'rgba(100,188,255,.45)'},
+    ivert:{w:.75,glow:5,c:'rgba(100,188,255,.45)',gc:'rgba(70,158,255,.22)'},
+    iroof:{w:.95,glow:8,c:'rgba(110,192,255,.55)',gc:'rgba(80,168,255,.3)'},
+  };
+
+  // Floor plan segments [x0,y0,x1,y1,type,progress]
+  const SEGS=[
+    [.12,.13,.88,.13,'outer',0],[.88,.13,.88,.87,'outer',0],[.88,.87,.12,.87,'outer',0],[.12,.87,.12,.13,'outer',0],
+    [.12,.50,.52,.50,'inner',0],[.52,.13,.52,.70,'inner',0],[.52,.70,.88,.70,'inner',0],
+    [.30,.50,.30,.87,'inner',0],[.12,.73,.30,.73,'inner',0],
+    [.60,.19,.80,.19,'detail',0],[.80,.19,.80,.35,'detail',0],[.80,.35,.60,.35,'detail',0],[.60,.35,.60,.19,'detail',0],
+    [.14,.76,.27,.76,'detail',0],[.27,.76,.27,.85,'detail',0],[.27,.85,.14,.85,'detail',0],[.14,.85,.14,.76,'detail',0],
+    [.53,.50,.53,.70,'stair',0],[.56,.50,.56,.70,'stair',0],[.59,.50,.59,.70,'stair',0],
+    [.20,.63,.28,.63,'furn',0],[.20,.63,.20,.68,'furn',0],[.28,.63,.28,.68,'furn',0],[.20,.68,.28,.68,'furn',0],
+    [.64,.55,.82,.55,'furn',0],[.64,.55,.64,.67,'furn',0],[.82,.55,.82,.67,'furn',0],[.64,.67,.82,.67,'furn',0],
+    [.10,.13,.10,.87,'dim',0],[.12,.91,.88,.91,'dim',0],
+    [.23,.13,.37,.13,'win',0],[.46,.13,.50,.13,'win',0],[.88,.23,.88,.39,'win',0],[.88,.55,.88,.69,'win',0],[.12,.23,.12,.37,'win',0],
+  ];
+
+  const WALLS3D=[
+    [.12,.13,.88,.13,'outer',0],[.88,.13,.88,.87,'outer',0],[.88,.87,.12,.87,'outer',0],[.12,.87,.12,.13,'outer',0],
+    [.52,.13,.52,.70,'inner',0],[.12,.50,.52,.50,'inner',0],
+  ];
+  const W3A=WALLS3D.map(()=>({v:0}));
+
+  const LBLS=[{k:'entry',nx:.25,ny:.33,t:'ENTRY HALL'},{k:'kitchen',nx:.68,ny:.26,t:'KITCHEN'},{k:'living',nx:.32,ny:.62,t:'LIVING'},{k:'master',nx:.68,ny:.58,t:'MASTER SUITE'},{k:'pool',nx:.18,ny:.80,t:'POOL'}];
+  const LA={};LBLS.forEach(l=>{LA[l.k]=0});
+  let titleA=0,subA=0;
+
+  // Delays (0.8x scale = 20% faster than v4)
+  const delays_outer=[.48,1.04,1.60,2.16];
+  const delays_inner=[2.80,3.12,3.44,3.68,3.92];
+  const delays_detail=[4.16,4.32,4.48,4.64,4.40,4.56,4.72,4.88];
+  const delays_stair=[4.80,4.88,4.96];
+  const delays_furn=[5.04,5.12,5.20,5.28,5.36,5.44,5.52,5.60];
+  const delays_dim=[5.20,5.44];
+  const delays_win=[4.80,4.88,4.96,5.04,5.12];
+
+  let oi=0,ii=0,di=0,si=0,fi=0,dimi=0,wi=0;
+  SEGS.forEach(s=>{
+    let delay;
+    switch(s[4]){
+      case 'outer':delay=delays_outer[oi++];break;
+      case 'inner':delay=delays_inner[ii++];break;
+      case 'detail':delay=delays_detail[di++]||5;break;
+      case 'stair':delay=delays_stair[si++];break;
+      case 'furn':delay=delays_furn[fi++];break;
+      case 'dim':delay=delays_dim[dimi++];break;
+      case 'win':delay=delays_win[wi++];break;
+      default:delay=5;
+    }
+    gsap.to(s,{5:1,duration:.55,delay,ease:'power2.inOut'});
+  });
+  WALLS3D.forEach((w,i)=>gsap.to(W3A[i],{v:1,duration:.4,delay:3.2+i*.16,ease:'power2.out'}));
+  LBLS.forEach(l=>gsap.to(LA,{[l.k]:1,duration:.45,delay:{entry:5.6,kitchen:5.68,living:5.76,master:5.84,pool:5.92}[l.k],ease:'power2.out'}));
+  gsap.to({v:0},{v:1,duration:.7,delay:6.56,ease:'power2.out',onUpdate:function(){titleA=this.targets()[0].v}});
+  gsap.to({v:0},{v:1,duration:.65,delay:7.0,ease:'power2.out',onUpdate:function(){subA=this.targets()[0].v}});
+
+  // Photo reveal and welcome UI
+  gsap.to('#house-reveal',{opacity:1,duration:2.2,delay:7.8,ease:'power2.inOut'});
+  gsap.to('#bp-canvas',{opacity:0,duration:1.6,delay:8.6,ease:'power2.inOut'});
+  const WD=9.0;
+  gsap.to('#wui',{opacity:1,pointerEvents:'all',duration:.1,delay:WD});
+  gsap.to('.wc-b',{opacity:1,duration:.38,stagger:.08,delay:WD});
+  gsap.to('.wloc',{opacity:1,y:0,duration:.75,delay:WD+.3,ease:'power3.out'});
+  gsap.to('#wr-t',{width:'80px',duration:.65,delay:WD+.7,ease:'power2.out'});
+  gsap.to('.wch',{y:0,opacity:1,duration:.65,stagger:.052,delay:WD+1.0,ease:'power4.out'});
+  gsap.to('.wtag',{opacity:1,y:0,duration:.72,delay:WD+2.05,ease:'power3.out'});
+  gsap.to('#wr-b',{width:'80px',duration:.65,delay:WD+2.5,ease:'power2.out'});
+  gsap.to('.wbtn',{opacity:1,y:0,duration:.65,delay:WD+2.9,ease:'power3.out'});
+  gsap.to('.wplse',{opacity:1,duration:.4,delay:WD+3.5});
+
+  function render(){
+    requestAnimationFrame(render);
+    ctx.clearRect(0,0,W,H);
+    // Deep space background with subtle radial glow
+    ctx.fillStyle='#020810';ctx.fillRect(0,0,W,H);
+    // Subtle ambient glow at center
+    const ag=ctx.createRadialGradient(W*.5,H*.44,0,W*.5,H*.44,Math.min(W,H)*.55);
+    ag.addColorStop(0,'rgba(20,60,120,.18)');ag.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=ag;ctx.fillRect(0,0,W,H);
+    // Grid
+    ctx.strokeStyle='rgba(40,100,180,.055)';ctx.lineWidth=.35;
+    const gs=Math.min(W,H)*.052;
+    for(let x=0;x<W;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+    for(let y=0;y<H;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+
+    // 3D wall faces
+    WALLS3D.forEach((w,i)=>{
+      const a=W3A[i].v;if(a<=0)return;
+      const[x0,y0,x1,y1,type]=w;
+      const[bx0,by0]=iso(x0,y0,0);const[bx1,by1]=iso(x1,y1,0);
+      const[tx0,ty0]=iso(x0,y0,WALL_H);const[tx1,ty1]=iso(x1,y1,WALL_H);
+      ctx.save();ctx.globalAlpha=a*.065;
+      ctx.beginPath();ctx.moveTo(bx0,by0);ctx.lineTo(bx1,by1);ctx.lineTo(tx1,ty1);ctx.lineTo(tx0,ty0);ctx.closePath();
+      ctx.fillStyle=type==='outer'?'rgba(80,155,220,1)':'rgba(60,125,200,1)';ctx.fill();ctx.restore();
+      if(a>.1){const vs=type==='outer'?ST.vert:ST.ivert;ctx.save();ctx.globalAlpha=a*.72;gLine(bx0,by0,tx0,ty0,vs);gLine(bx1,by1,tx1,ty1,vs);ctx.restore();}
+      if(a>.2){const rs=type==='outer'?ST.roof:ST.iroof;ctx.save();ctx.globalAlpha=a*.86;gLine(tx0,ty0,tx1,ty1,rs);ctx.restore();}
+    });
+
+    // Floor plan lines
+    SEGS.forEach(s=>{
+      const[x0,y0,x1,y1,type,progress]=s;if(progress<=0)return;
+      const[sx0,sy0]=iso(x0,y0,0);const[sx1,sy1]=iso(x1,y1,0);
+      const ex=sx0+(sx1-sx0)*progress,ey=sy0+(sy1-sy0)*progress;
+      const st=ST[type]||ST.detail;
+      gLine(sx0,sy0,ex,ey,st);
+      if(progress>0&&progress<1)gDot(ex,ey,st);
+      if(progress>=.99){ctx.save();ctx.fillStyle=st.c;ctx.shadowBlur=6;ctx.shadowColor=st.c;ctx.beginPath();ctx.arc(sx1,sy1,1.6,0,Math.PI*2);ctx.fill();ctx.restore();}
+    });
+
+    // Door arcs
+    const dp=SEGS.find(s=>s[4]==='inner'&&s[5]>=1)?1:0;
+    if(dp>0.5){
+      const das={w:.8,glow:5,c:'rgba(100,188,255,.5)',gc:'rgba(70,158,255,.25)'};
+      const[dx,dy]=iso(.12,.50,0);const[dx2,dy2]=iso(.12,.38,0);
+      const dr=Math.sqrt((dx2-dx)**2+(dy2-dy)**2);
+      gArc(dx,dy,dr*.8,Math.PI*1.5,Math.PI*2,das);
+      const[kx,ky]=iso(.52,.35,0);const[kx2,ky2]=iso(.52,.24,0);
+      const kr=Math.sqrt((kx2-kx)**2+(ky2-ky)**2);
+      gArc(kx,ky,kr*.85,Math.PI*1.5,Math.PI*2,das);
+    }
+
+    // Labels
+    const lfs=Math.max(8,Math.min(W,H)*.0068);
+    LBLS.forEach(({k,nx,ny,t})=>{
+      const a=LA[k];if(a<=0)return;
+      const[lx,ly]=iso(nx,ny,0);
+      ctx.save();ctx.globalAlpha=a;ctx.shadowBlur=7;ctx.shadowColor='rgba(70,158,255,.5)';ctx.fillStyle='rgba(82,168,255,.52)';
+      ctx.font=`${lfs}px Syncopate,sans-serif`;ctx.textAlign='center';ctx.fillText(t,lx,ly);ctx.restore();
+    });
+
+    // Compass rose
+    if(LA.pool>.5){
+      const ca=LA.pool;const[cx2,cy2]=iso(.84,.82,0);const cr=Math.min(W,H)*.03;
+      ctx.save();ctx.globalAlpha=ca*.5;ctx.strokeStyle='rgba(201,165,90,.55)';ctx.lineWidth=.7;ctx.shadowBlur=5;ctx.shadowColor='rgba(201,165,90,.4)';
+      ctx.beginPath();ctx.arc(cx2,cy2,cr,0,Math.PI*2);ctx.stroke();
+      ['N','E','S','W'].forEach((d,di)=>{
+        const ang=di*Math.PI/2-Math.PI/2;
+        const tx=cx2+Math.cos(ang)*cr*1.4,ty=cy2+Math.sin(ang)*cr*1.4;
+        ctx.fillStyle='rgba(201,165,90,.52)';ctx.font=`${Math.max(6,cr*.4)}px Jost`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(d,tx,ty);
+      });
+      ctx.restore();
+    }
+
+    // Title — high tech HUD style
+    if(titleA>0){
+      const isMob=W<768;
+      // Scan line effect — thin bright line sweeping down
+      const scanY=(Date.now()*0.035)%(H*1.2)-H*.1;
+      ctx.save();
+      const sg=ctx.createLinearGradient(0,scanY-12,0,scanY+12);
+      sg.addColorStop(0,'rgba(100,200,255,0)');
+      sg.addColorStop(0.5,`rgba(100,200,255,${titleA*.07})`);
+      sg.addColorStop(1,'rgba(100,200,255,0)');
+      ctx.fillStyle=sg;ctx.fillRect(0,scanY-12,W,24);ctx.restore();
+
+      // Corner data readouts
+      if(titleA>.5&&!isMob){
+        ctx.save();ctx.globalAlpha=titleA*.45;
+        ctx.fillStyle='rgba(100,200,255,0.55)';
+        ctx.font=`${Math.max(7,W*.007)}px Jost,monospace`;
+        ctx.textAlign='left';
+        ctx.fillText('SYS // AXIOM-ARC v2.4',W*.04,H*.06);
+        ctx.fillText(`X: ${(W/2).toFixed(0)}px  Y: ${(H*.44).toFixed(0)}px  Z: 0.14`,W*.04,H*.075);
+        ctx.textAlign='right';
+        ctx.fillText('FLOOR PLAN · LEVEL 01',W*.96,H*.06);
+        ctx.fillText('STATUS: RENDERING ▮',W*.96,H*.075);
+        ctx.restore();
+      }
+
+      // Main title
+      const tfs=isMob?Math.max(9,W*.025):Math.max(13,Math.min(W,H)*.018);
+      ctx.save();ctx.globalAlpha=titleA;
+      // Outer glow pass
+      ctx.shadowBlur=30;ctx.shadowColor='rgba(100,200,255,.25)';
+      ctx.fillStyle=`rgba(245,240,232,${titleA*.9})`;
+      ctx.font=`700 ${tfs}px Syncopate,sans-serif`;
+      ctx.textAlign='center';
+      ctx.letterSpacing=isMob?'4px':'8px';
+      const title1=isMob?'AXIOM INTERIORS':'AXIOM  INTERIORS';
+      ctx.fillText(title1,W*.5,isMob?H*.07:H*.088);
+      ctx.restore();
+
+      // Thin gold rule under title
+      if(!isMob){
+        const rw=Math.min(W*.22,260)*titleA;
+        ctx.save();ctx.globalAlpha=titleA*.6;
+        const rg=ctx.createLinearGradient(W*.5-rw/2,0,W*.5+rw/2,0);
+        rg.addColorStop(0,'rgba(201,165,90,0)');rg.addColorStop(.5,'rgba(201,165,90,.8)');rg.addColorStop(1,'rgba(201,165,90,0)');
+        ctx.strokeStyle=rg;ctx.lineWidth=.8;
+        ctx.beginPath();ctx.moveTo(W*.5-rw/2,H*.096);ctx.lineTo(W*.5+rw/2,H*.096);ctx.stroke();
+        ctx.restore();
+      }
+    }
+    // Subtitle — data readout style
+    if(subA>0){
+      const isMob=W<768;
+      const sfs=isMob?Math.max(6,W*.018):Math.max(7,Math.min(W,H)*.0062);
+      ctx.save();ctx.globalAlpha=subA;
+      ctx.fillStyle=`rgba(201,165,90,${subA*.7})`;
+      ctx.font=`200 ${sfs}px Jost,monospace`;
+      ctx.textAlign='center';ctx.letterSpacing='3px';
+      const sub=isMob?'8,200 SF · WAKE COUNTY, NC':'8,200 SF  ·  WAKE COUNTY, NC  ·  EST. VALUE $8,000,000+';
+      ctx.fillText(sub,W*.5,isMob?H*.082:H*.106);
+      // Small blinking cursor after subtitle
+      if(Math.floor(Date.now()/600)%2===0){
+        ctx.fillStyle=`rgba(201,165,90,${subA*.8})`;
+        const tw=ctx.measureText(sub).width;
+        ctx.fillRect(W*.5+tw/2+4,isMob?H*.074:H*.098,sfs*.5,sfs*.9);
+      }
+      ctx.restore();
+    }
+  }
+  render();
+})();
+
+// Mobile stories slideshow — runs only on mobile
+(function(){
+  if(window.innerWidth>768)return;
+  const cards=[...document.querySelectorAll('.story-card')];
+  const dots=[...document.querySelectorAll('.slide-dot')];
+  const dotsWrap=document.getElementById('slide-dots');
+  if(!cards.length)return;
+
+  // Show dots
+  if(dotsWrap)dotsWrap.style.display='flex';
+
+  // Hard reset all cards — override any GSAP inline styles
+  function resetCards(){
+    cards.forEach(c=>{
+      c.style.cssText='display:none !important;opacity:0;width:100%;box-sizing:border-box;';
+      c.classList.remove('slide-active');
+    });
+  }
+
+  let current=0;
+  let timer=null;
+
+  function showCard(idx){
+    resetCards();
+    current=((idx%cards.length)+cards.length)%cards.length;
+    const card=cards[current];
+    // Force display and opacity via inline style
+    card.style.cssText='display:flex !important;flex-direction:column;width:100%;box-sizing:border-box;opacity:1;border:1px solid rgba(201,165,90,.15);padding:2rem 1.6rem;';
+    card.classList.add('slide-active');
+    // Update dots
+    dots.forEach((d,i)=>d.classList.toggle('on',i===current));
+  }
+
+  // Make goSlide global for onclick handlers
+  window.goSlide=function(idx){
+    clearInterval(timer);
+    showCard(idx);
+    timer=setInterval(()=>showCard(current+1),5000);
+  };
+
+  // Wait for room to be entered before initialising
+  // Use a small delay to let GSAP run first then override
+  function init(){
+    showCard(0);
+    timer=setInterval(()=>showCard(current+1),5000);
+  }
+
+  // Also hook into IntersectionObserver to init when stories room enters view
+  const storiesSection=document.getElementById('r-stories');
+  if(storiesSection){
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          // Small delay ensures GSAP has run first
+          setTimeout(init,100);
+          obs.unobserve(storiesSection);
+        }
+      });
+    },{threshold:0.4});
+    obs.observe(storiesSection);
+  }
+
+  // Touch swipe
+  let tx=0;
+  const grid=document.querySelector('.stories-grid');
+  if(grid){
+    grid.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+    grid.addEventListener('touchend',e=>{
+      const diff=tx-e.changedTouches[0].clientX;
+      if(Math.abs(diff)>40)window.goSlide(diff>0?current+1:current-1);
+    },{passive:true});
+  }
+})();
+
+</script>
+</body>
+</html>
